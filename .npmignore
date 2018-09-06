@@ -16,3 +16,4 @@ test
 .eslintrc.js
 jest.config.js
 src/*.spec.js
+.travis.yml
