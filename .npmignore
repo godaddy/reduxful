@@ -1,0 +1,18 @@
+coverage
+node_modules
+.idea
+*.iml
+*.log
+*.bak
+.DS_Store
+
+!lib
+
+### ▲ .gitignore contents above
+### ▼ additional ingore files for publishing
+
+test
+.babelrc
+.eslintrc.js
+jest.config.js
+src/*.spec.js
