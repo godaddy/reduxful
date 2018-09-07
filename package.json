@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "description": "Redux state from RESTful services",
   "main": "./lib",
+  "browser": "./lib",
   "module": "./src",
   "license": "MIT",
   "author": "GoDaddy Operating Company, LLC",
