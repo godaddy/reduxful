@@ -84,9 +84,15 @@ describe('Reducers', () => {
       expect(outState).toEqual({});
     });
 
-    it('returns original state if unsupported action', () => {
+    it('returns original state if unsupported action prefix', () => {
       const inState = { bogus: 'bogus' };
       const outState = reducer(inState, { type: 'BAD_ACTION' });
+      expect(outState).toBe(inState);
+    });
+
+    it('returns original state if unsupported action suffix', () => {
+      const inState = { bogus: 'bogus' };
+      const outState = reducer(inState, { type: 'mockApi_BOGUS' });
       expect(outState).toBe(inState);
     });
 
