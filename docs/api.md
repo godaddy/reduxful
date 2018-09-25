@@ -83,7 +83,7 @@ direct developer access be needed.</p>
 </dd>
 <dt><a href="#UrlTemplateFn">UrlTemplateFn</a> ⇒ <code>String</code></dt>
 <dd><p>Function to create url template string which can read from Redux state.
-Placeholders in template are transformed with params by <a href="https://github.com/godaddy/transform-url#readme">transform-url</a>.</p>
+Placeholders can be set, with final URL built by <a href="https://github.com/godaddy/transform-url#readme">transform-url</a>.</p>
 </dd>
 <dt><a href="#SubActionCreatorFn">SubActionCreatorFn</a> ⇒ <code>Object</code></dt>
 <dd><p>Sub action creator function</p>
@@ -368,7 +368,7 @@ Request Description object
 
 | Name | Type | Description |
 | --- | --- | --- |
-| url | <code>String</code> \| [<code>UrlTemplateFn</code>](#UrlTemplateFn) | URL template of the REST endpoint. Placeholders in template are transformed with params by [transform-url](https://github.com/godaddy/transform-url#readme). |
+| url | <code>String</code> \| [<code>UrlTemplateFn</code>](#UrlTemplateFn) | URL template of the REST endpoint. Placeholders can be set, with final URL built by [transform-url](https://github.com/godaddy/transform-url#readme). |
 | method | <code>String</code> | HTTP method to use |
 | [resourceAlias] | <code>String</code> | Resource name alias |
 | [resourceData] | <code>Object</code> \| <code>Array</code> \| <code>\*</code> | Optional initial resource data |
@@ -428,7 +428,7 @@ Function to create request options object which can read from Redux state
 
 ## UrlTemplateFn ⇒ <code>String</code>
 Function to create url template string which can read from Redux state.
-Placeholders in template are transformed with params by [transform-url](https://github.com/godaddy/transform-url#readme).
+Placeholders can be set, with final URL built by [transform-url](https://github.com/godaddy/transform-url#readme).
 
 **Kind**: global typedef  
 **Returns**: <code>String</code> - urlTemplate  
