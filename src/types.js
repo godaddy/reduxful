@@ -18,7 +18,8 @@
  *
  * @typedef {Object} RequestDescription
  *
- * @property {String} url - URL of the REST endpoint
+ * @property {String|UrlTemplateFn} url - URL template of the REST endpoint.
+ * Placeholders can be set, with final URL built by [transform-url](https://github.com/godaddy/transform-url#readme).
  * @property {String} method - HTTP method to use
  * @property {String} [resourceAlias] - Resource name alias
  * @property {Object|Array|*} [resourceData] - Optional initial resource data
@@ -68,6 +69,17 @@
  *
  * @param {Function} getState - Gets the current redux state
  * @returns {Object} options
+ */
+
+
+/**
+ * Function to create url template string which can read from Redux state.
+ * Placeholders can be set, with final URL built by [transform-url](https://github.com/godaddy/transform-url#readme).
+ *
+ * @typedef {Function} UrlTemplateFn
+ *
+ * @param {Function} getState - Gets the current redux state
+ * @returns {String} urlTemplate
  */
 
 

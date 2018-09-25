@@ -1,4 +1,5 @@
-import { getResourceKey, transformUrl, getUrlTemplate, isFunction } from './utils';
+import { getResourceKey, getUrlTemplate, isFunction } from './utils';
+import transformUrl from 'transform-url';
 import { makeRequest } from './requestAdapter';
 import * as constants from './constants';
 

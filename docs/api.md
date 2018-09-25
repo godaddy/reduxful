@@ -9,20 +9,14 @@
 ## Functions
 
 <dl>
-<dt><a href="#setupApi">setupApi(apiName, apiDesc, [config])</a> ⇒ <code><a href="#Reduxful">Reduxful</a></code></dt>
-<dd><p>Create new RESTful configuration for Redux.</p>
-</dd>
 <dt><a href="#makeFetchAdapter">makeFetchAdapter(fetcher, [defaultOptions])</a> ⇒ <code>function</code></dt>
 <dd><p>Make an adapter to match the RequestAdapter interface using Fetch</p>
 </dd>
+<dt><a href="#setupApi">setupApi(apiName, apiDesc, [config])</a> ⇒ <code><a href="#Reduxful">Reduxful</a></code></dt>
+<dd><p>Create new RESTful configuration for Redux.</p>
+</dd>
 <dt><a href="#setRequestAdapter">setRequestAdapter(requestAdapter)</a></dt>
 <dd><p>Register an ajax request adapter.</p>
-</dd>
-<dt><a href="#transformUrl">transformUrl(urlTemplate, params)</a> ⇒ <code>String</code></dt>
-<dd><p>Transform url templates with provided params.
-To use url parameters, prefix them <code>:</code>, for example <code>/shopper/:shopperId</code>.
-Params that have not been parameterized in the url template will be append as query params.
-Urls with a port number will be respected, for example <code>http://example.com:8080</code></p>
 </dd>
 <dt><a href="#getResourceKey">getResourceKey(reqName, params)</a> ⇒ <code>String</code></dt>
 <dd><p>Builds the resource key based on the parameters passed.</p>
@@ -86,6 +80,10 @@ direct developer access be needed.</p>
 </dd>
 <dt><a href="#OptionsFn">OptionsFn</a> ⇒ <code>Object</code></dt>
 <dd><p>Function to create request options object which can read from Redux state</p>
+</dd>
+<dt><a href="#UrlTemplateFn">UrlTemplateFn</a> ⇒ <code>String</code></dt>
+<dd><p>Function to create url template string which can read from Redux state.
+Placeholders in template are transformed with params by <a href="https://github.com/godaddy/transform-url#readme">transform-url</a>.</p>
 </dd>
 <dt><a href="#SubActionCreatorFn">SubActionCreatorFn</a> ⇒ <code>Object</code></dt>
 <dd><p>Sub action creator function</p>
@@ -166,6 +164,19 @@ Property
 
 **Kind**: instance property of [<code>Reduxful</code>](#Reduxful)  
 **Returns**: <code>Object.&lt;String, SelectorFn&gt;</code> - redux selectors  
+<a name="makeFetchAdapter"></a>
+
+## makeFetchAdapter(fetcher, [defaultOptions]) ⇒ <code>function</code>
+Make an adapter to match the RequestAdapter interface using Fetch
+
+**Kind**: global function  
+**Returns**: <code>function</code> - fetchAdapter  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| fetcher | <code>function</code> | Fetch API or ponyfill |
+| [defaultOptions] | <code>Object</code> | Any default request options |
+
 <a name="setupApi"></a>
 
 ## setupApi(apiName, apiDesc, [config]) ⇒ [<code>Reduxful</code>](#Reduxful)
@@ -182,19 +193,6 @@ Create new RESTful configuration for Redux.
 | [config.requestAdapter] | [<code>RequestAdapter</code>](#RequestAdapter) | Request adapter to use |
 | [config.options] | <code>Object</code> \| [<code>OptionsFn</code>](#OptionsFn) | Options to be passed to the request adapter |
 
-<a name="makeFetchAdapter"></a>
-
-## makeFetchAdapter(fetcher, [defaultOptions]) ⇒ <code>function</code>
-Make an adapter to match the RequestAdapter interface using Fetch
-
-**Kind**: global function  
-**Returns**: <code>function</code> - fetchAdapter  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| fetcher | <code>function</code> | Fetch API or ponyfill |
-| [defaultOptions] | <code>Object</code> | Any default request options |
-
 <a name="setRequestAdapter"></a>
 
 ## setRequestAdapter(requestAdapter)
@@ -206,25 +204,6 @@ Register an ajax request adapter.
 | Param | Type | Description |
 | --- | --- | --- |
 | requestAdapter | [<code>RequestAdapter</code>](#RequestAdapter) | Request adapter to use |
-
-<a name="transformUrl"></a>
-
-## transformUrl(urlTemplate, params) ⇒ <code>String</code>
-Transform url templates with provided params.
-To use url parameters, prefix them `:`, for example `/shopper/:shopperId`.
-Params that have not been parameterized in the url template will be append as query params.
-Urls with a port number will be respected, for example `http://example.com:8080`
-
-**Kind**: global function  
-**Returns**: <code>String</code> - transformed url  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| urlTemplate | <code>String</code> | The base url which |
-| params | <code>Object.&lt;String, (String\|Number)&gt;</code> | Parameters used as URL or query params |
-| [params.apiProtocol] | <code>String</code> | The optional protocol override |
-| [params.apiHost] | <code>String</code> | The optional api hostname override |
-| [params.apiPort] | <code>String</code> | The optional api port override |
 
 <a name="getResourceKey"></a>
 
@@ -389,7 +368,7 @@ Request Description object
 
 | Name | Type | Description |
 | --- | --- | --- |
-| url | <code>String</code> | URL of the REST endpoint |
+| url | <code>String</code> \| [<code>UrlTemplateFn</code>](#UrlTemplateFn) | URL template of the REST endpoint. Placeholders in template are transformed with params by [transform-url](https://github.com/godaddy/transform-url#readme). |
 | method | <code>String</code> | HTTP method to use |
 | [resourceAlias] | <code>String</code> | Resource name alias |
 | [resourceData] | <code>Object</code> \| <code>Array</code> \| <code>\*</code> | Optional initial resource data |
@@ -440,6 +419,19 @@ Function to create request options object which can read from Redux state
 
 **Kind**: global typedef  
 **Returns**: <code>Object</code> - options  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| getState | <code>function</code> | Gets the current redux state |
+
+<a name="UrlTemplateFn"></a>
+
+## UrlTemplateFn ⇒ <code>String</code>
+Function to create url template string which can read from Redux state.
+Placeholders in template are transformed with params by [transform-url](https://github.com/godaddy/transform-url#readme).
+
+**Kind**: global typedef  
+**Returns**: <code>String</code> - urlTemplate  
 
 | Param | Type | Description |
 | --- | --- | --- |

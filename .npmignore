@@ -11,9 +11,7 @@ node_modules
 ### ▲ .gitignore contents above
 ### ▼ additional ingore files for publishing
 
-test
+tests
 .babelrc
 .eslintrc.js
-jest.config.js
-src/*.spec.js
 .travis.yml
