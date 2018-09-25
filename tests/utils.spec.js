@@ -1,6 +1,4 @@
 import {
-  transformUrl,
-  buildQueryStr,
   getResourceKey,
   isLoaded,
   isUpdating,
@@ -11,7 +9,6 @@ import {
   parseApiDesc
 } from '../src/utils';
 import * as utils from '../src/utils';
-import { MissingParamError } from '../src/errors';
 
 const params = {
   id: 'user123',
@@ -19,86 +16,6 @@ const params = {
 };
 
 describe('Utils', () => {
-
-  describe('transformUrl', () => {
-
-    it('returns an unmodified url', () => {
-      const url = 'http://site.com/api/items';
-      expect(transformUrl(url)).toEqual(url);
-    });
-
-    it('returns a modified url with url params', () => {
-      const url = 'http://site.com/api/items/:id/:count';
-      expect(transformUrl(url, params)).toEqual('http://site.com/api/items/user123/777');
-    });
-
-    it('returns a modified url with query params', () => {
-      const url = 'http://site.com/api/items/:id';
-      expect(transformUrl(url, params)).toEqual('http://site.com/api/items/user123?count=777');
-    });
-
-    it('allows predefined query params in base url', () => {
-      const url = 'http://site.com/api/items/:id?force=true';
-      expect(transformUrl(url, params)).toEqual('http://site.com/api/items/user123?force=true&count=777');
-    });
-
-    it('throws an error with unmet param', () => {
-      const url = 'http://site.com/api/items/:someMissingParam';
-      expect(() => transformUrl(url, params)).toThrow(MissingParamError);
-    });
-
-    it('allows for port number in url', () => {
-      const url = 'http://site.com:8080/api/items/:id';
-      expect(transformUrl(url, params)).toEqual('http://site.com:8080/api/items/user123?count=777');
-    });
-
-    it('returns a url with hostname substituted', () => {
-      const url = 'http://hostname.com:8080/api/vms/:vmId/actions/:actionId?q1=:q1&q2=:q2&q3=q3';
-      const expectedUrl = 'http://test.com:8080/api/vms/foo/actions/bar?q1=hello&q2=world&q3=q3';
-      const params1 = { vmId: 'foo', actionId: 'bar', q1: 'hello', q2: 'world', apiHostname: 'test.com' };
-
-      expect(transformUrl(url, params1)).toEqual(expectedUrl);
-    });
-
-    it('returns a url with port substituted', () => {
-      const url = 'http://hostname.com:8080/api/vms/:vmId/actions/:actionId?q1=:q1&q2=:q2&q3=q3';
-      const expectedUrl = 'http://hostname.com:8443/api/vms/foo/actions/bar?q1=hello&q2=world&q3=q3';
-      const params1 = { vmId: 'foo', actionId: 'bar', q1: 'hello', q2: 'world', apiPort: '8443' };
-
-      expect(transformUrl(url, params1)).toEqual(expectedUrl);
-    });
-
-    it('returns a url with protocol substituted', () => {
-      const url = 'http://hostname.com:8080/api/vms/:vmId/actions/:actionId?q1=:q1&q2=:q2&q3=q3';
-      const expectedUrl = 'https://hostname.com:8080/api/vms/foo/actions/bar?q1=hello&q2=world&q3=q3';
-      const params1 = { vmId: 'foo', actionId: 'bar', q1: 'hello', q2: 'world', apiProtocol: 'https' };
-
-      expect(transformUrl(url, params1)).toEqual(expectedUrl);
-    });
-
-    it('returns a relative url with variables substitued', () => {
-      const url = '/api/items/:id/:count';
-      expect(transformUrl(url, params)).toEqual('/api/items/user123/777');
-    });
-  });
-
-  describe('buildQueryStr', () => {
-
-    it('supports single valued query params', () => {
-      const queryParams = { param1: 'value1', param2: 'value2' };
-      expect(buildQueryStr(queryParams)).toEqual('param1=value1&param2=value2');
-    });
-
-    it('supports multi valued query params', () => {
-      const queryParams = { param1: 'value1', param2: ['value2', 'value3'] };
-      expect(buildQueryStr(queryParams)).toEqual('param1=value1&param2=value2&param2=value3');
-    });
-
-    it('empty query params', () => {
-      const queryParams = {};
-      expect(buildQueryStr(queryParams)).toEqual('');
-    });
-  });
 
   describe('getResourceKey', () => {
 
