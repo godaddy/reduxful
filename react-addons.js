@@ -1,6 +1,1 @@
-const { resourceShape, extendResourceShape } = require('./lib/addons/react-addons');
-
-module.exports = {
-  resourceShape,
-  extendResourceShape
-};
+module.exports = require('./lib/addons/react-addons');
