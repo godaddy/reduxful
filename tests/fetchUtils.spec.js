@@ -129,6 +129,14 @@ describe('fetchUtils', () => {
       });
     });
 
+    it('decodes and resolves PLAIN TEXT content', (done) => {
+      mockResponse.headers.set('content-type', 'text/plain');
+      handlers.decode(mockResponse).then(data => {
+        expect(data).toBe(mockTextData);
+        done();
+      });
+    });
+
     it('rejects for unhandled content types', (done) => {
       mockResponse.headers.set('content-type', 'some/type');
       handlers.decode(mockResponse).catch(data => {
