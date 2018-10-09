@@ -1,9 +1,6 @@
 import { withHeaders } from './withHeaders';
 
-export const defaultHeaders = {
-  'Accept': 'application/json',
-  'Content-Type': 'application/json'
-};
+export const defaultHeaders = {};
 
 export const handlers = {};
 
@@ -31,7 +28,7 @@ handlers.decode = function (response) {
   if (contentType.includes('application/json')) {
     return response.json()
       .then(data => handlers.finish(response, data));
-  } else if (contentType.includes('text/html')) {
+  } else if (contentType.includes('text/html') || contentType.includes('text/plain')) {
     return response.text()
       .then(data => handlers.finish(response, data));
   }
