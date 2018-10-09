@@ -138,6 +138,9 @@ describe('fetchUtils', () => {
     });
 
     it('rejects for unhandled content types', (done) => {
+      mockResponse.text = jest.fn().mockImplementation(() => {
+        throw new Error('`text` not implemented');
+      });
       mockResponse.headers.set('content-type', 'some/type');
       handlers.decode(mockResponse).catch(data => {
         expect(data).toContain('not supported');

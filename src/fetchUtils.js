@@ -24,12 +24,13 @@ handlers.decode = function (response) {
   if (contentType.includes('application/json')) {
     return response.json()
       .then(data => handlers.finish(response, data));
-  } else if (contentType.includes('text/html') || contentType.includes('text/plain')) {
+  }
+  try {
     return response.text()
       .then(data => handlers.finish(response, data));
+  } catch (err) {
+    return Promise.reject(`Content-type ${contentType} not supported`);
   }
-
-  return Promise.reject(`Content-type ${contentType} not supported`);
 };
 
 /**
