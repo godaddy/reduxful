@@ -30,9 +30,6 @@
 <dt><a href="#hasError">hasError(resource)</a> ⇒ <code>Boolean</code></dt>
 <dd><p>Helper function to check if a Resource has an error.</p>
 </dd>
-<dt><a href="#withHeaders">withHeaders(caller, headers)</a> ⇒ <code>function</code></dt>
-<dd><p>Decorate a request or fetch function to use headers when called.</p>
-</dd>
 </dl>
 
 ## Typedefs
@@ -253,19 +250,6 @@ Helper function to check if a Resource has an error.
 | Param | Type | Description |
 | --- | --- | --- |
 | resource | [<code>Resource</code>](#Resource) | Resource object |
-
-<a name="withHeaders"></a>
-
-## withHeaders(caller, headers) ⇒ <code>function</code>
-Decorate a request or fetch function to use headers when called.
-
-**Kind**: global function  
-**Returns**: <code>function</code> - wrappedCaller  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| caller | <code>function</code> | A request or fetch function |
-| headers | <code>Object</code> \| <code>function</code> | Header object to use or a function which returns and object |
 
 <a name="ActionCreatorFn"></a>
 

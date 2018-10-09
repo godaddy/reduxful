@@ -58,9 +58,9 @@ describe('fetchUtils', () => {
       expect(mockFetch).toHaveBeenCalledWith(mockUrl, expect.objectContaining(mockOptions));
     });
 
-    it('calls wrapped function with default headers', () => {
+    it('calls wrapped function with no default headers', () => {
       fetchAdapter({ url: mockUrl, ...mockOptions });
-      expect(mockFetch).toHaveBeenCalledWith(mockUrl, expect.objectContaining({ headers: defaultHeaders }));
+      expect(mockFetch).toHaveBeenCalledWith(mockUrl, expect.not.objectContaining({ headers: expect.any(Object) }));
     });
 
     it('calls wrapped function with default options', () => {
@@ -129,7 +129,18 @@ describe('fetchUtils', () => {
       });
     });
 
+    it('decodes and resolves PLAIN TEXT content', (done) => {
+      mockResponse.headers.set('content-type', 'text/plain');
+      handlers.decode(mockResponse).then(data => {
+        expect(data).toBe(mockTextData);
+        done();
+      });
+    });
+
     it('rejects for unhandled content types', (done) => {
+      mockResponse.text = jest.fn().mockImplementation(() => {
+        throw new Error('`text` not implemented');
+      });
       mockResponse.headers.set('content-type', 'some/type');
       handlers.decode(mockResponse).catch(data => {
         expect(data).toContain('not supported');
