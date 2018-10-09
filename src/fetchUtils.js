@@ -1,7 +1,3 @@
-import { withHeaders } from './withHeaders';
-
-export const defaultHeaders = {};
-
 export const handlers = {};
 
 /**
@@ -44,8 +40,6 @@ handlers.decode = function (response) {
  * @returns {Function} fetchAdapter
  */
 export function makeFetchAdapter(fetcher, defaultOptions = {}) {
-  const caller = withHeaders(fetcher, defaultHeaders);
-
   /**
    * The RequestAdapter using Fetch
    *
@@ -57,7 +51,7 @@ export function makeFetchAdapter(fetcher, defaultOptions = {}) {
     const { url, withCredentials, ...rest } = options;
     const outOpts = { ...defaultOptions, ...rest };
     outOpts.credentials = withCredentials ? 'include' : outOpts.credentials || 'same-origin';
-    return caller(url, outOpts).then(handlers.decode);
+    return fetcher(url, outOpts).then(handlers.decode);
   }
 
   return fetchAdapter;

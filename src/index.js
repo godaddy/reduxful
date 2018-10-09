@@ -6,4 +6,3 @@ export {
 
 export { isLoaded, isUpdating, hasError, getResourceKey } from './utils';
 export { makeFetchAdapter } from './fetchUtils';
-export { withHeaders } from './withHeaders';

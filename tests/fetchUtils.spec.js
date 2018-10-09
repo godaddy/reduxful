@@ -58,9 +58,9 @@ describe('fetchUtils', () => {
       expect(mockFetch).toHaveBeenCalledWith(mockUrl, expect.objectContaining(mockOptions));
     });
 
-    it('calls wrapped function with default headers', () => {
+    it('calls wrapped function with no default headers', () => {
       fetchAdapter({ url: mockUrl, ...mockOptions });
-      expect(mockFetch).toHaveBeenCalledWith(mockUrl, expect.objectContaining({ headers: defaultHeaders }));
+      expect(mockFetch).toHaveBeenCalledWith(mockUrl, expect.not.objectContaining({ headers: expect.any(Object) }));
     });
 
     it('calls wrapped function with default options', () => {
