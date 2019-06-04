@@ -1,3 +1,4 @@
+import { startsWith, endsWith } from './utils';
 
 export const handlers = {};
 
@@ -59,10 +60,10 @@ handlers.onComplete = function (state, action) {
  */
 export default function createReducer(apiName) {
   return function reducer(state = {}, action) {
-    if (action.type.startsWith(apiName)) {
-      if (action.type.endsWith('RESET')) return handlers.onReset(state, action);
-      if (action.type.endsWith('START')) return handlers.onStart(state, action);
-      if (action.type.endsWith('SUCCESS') || action.type.endsWith('FAIL')) return handlers.onComplete(state, action);
+    if (startsWith(action.type, apiName)) {
+      if (endsWith(action.type, 'RESET')) return handlers.onReset(state, action);
+      if (endsWith(action.type, 'START')) return handlers.onStart(state, action);
+      if (endsWith(action.type, 'SUCCESS') || endsWith(action.type, 'FAIL')) return handlers.onComplete(state, action);
     }
     return state;
   };

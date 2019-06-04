@@ -103,3 +103,25 @@ export function getUrlTemplate(url, getState) {
   if (isFunction(url)) return url(getState);
   return url;
 }
+
+/**
+ * Determines whether a string begins with the characters of a specified string
+ *
+ * @param {String} str - String to check
+ * @param {String} search - String to search for at the start
+ * @returns {Boolean} result
+ */
+export function startsWith(str, search) {
+  return str.indexOf(search) === 0;
+}
+
+/**
+ * Determines whether a string ends with the characters of a specified string
+ *
+ * @param {String} str - String to check
+ * @param {String} search - String to search for at the end
+ * @returns {Boolean} result
+ */
+export function endsWith(str, search) {
+  return str.indexOf(search) === (str.length - search.length);
+}
