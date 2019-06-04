@@ -123,5 +123,5 @@ export function startsWith(str, search) {
  * @returns {Boolean} result
  */
 export function endsWith(str, search) {
-  return str.indexOf(search) === (str.length - search.length);
+  return str.lastIndexOf(search) === (str.length - search.length);
 }

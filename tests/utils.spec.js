@@ -233,6 +233,14 @@ describe('Utils', () => {
       expect(endsWith('example', 'le')).toBe(true);
     });
 
+    it('handles a string with multiple occurences', () => {
+      expect(endsWith('siryessir', '')).toBe(true);
+    });
+
+    it('handles an empty search string', () => {
+      expect(endsWith('example', '')).toBe(true);
+    });
+
     it('returns false if search string is not at end', () => {
       expect(endsWith('example', 'no')).toBe(false);
     });
@@ -243,10 +251,6 @@ describe('Utils', () => {
 
     it('handles an empty string', () => {
       expect(endsWith('', 'amp')).toBe(false);
-    });
-
-    it('handles an empty search string', () => {
-      expect(endsWith('example', '')).toBe(false);
     });
   });
 
