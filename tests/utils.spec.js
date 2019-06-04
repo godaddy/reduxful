@@ -234,7 +234,7 @@ describe('Utils', () => {
     });
 
     it('handles a string with multiple occurences', () => {
-      expect(endsWith('siryessir', '')).toBe(true);
+      expect(endsWith('siryessir', 'sir')).toBe(true);
     });
 
     it('handles an empty search string', () => {
