@@ -60,7 +60,7 @@ needs. See [advanced actionCreators] for some examples.
 
 Now that we are creating new doodads, let us look at tying into our API to
 update them. Resources are keyed by params, but also by the endpoint name. If
-we want an UPDATE request to modify a resource we already have from a GET, 
+we want an PUT request to modify a resource we already have from a GET, 
 can set the [resourceAlias] in our request description.
 
 ```diff
@@ -77,7 +77,7 @@ const apiDesc = {
 +   },
 +   updateDoodad: {
 +     url: 'http://api.my-service.com/doodads/:id',
-+     method: 'UPDATE',
++     method: 'PUT',
 +     resourceAlias: 'getDoodad'
   }
 };
