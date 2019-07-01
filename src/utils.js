@@ -110,6 +110,7 @@ export function getUrlTemplate(url, getState) {
  * @param {String} str - String to check
  * @param {String} search - String to search for at the start
  * @returns {Boolean} result
+ * @private
  */
 export function startsWith(str, search) {
   return str.indexOf(search) === 0;
@@ -121,6 +122,7 @@ export function startsWith(str, search) {
  * @param {String} str - String to check
  * @param {String} search - String to search for at the end
  * @returns {Boolean} result
+ * @private
  */
 export function endsWith(str, search) {
   return str.lastIndexOf(search) === (str.length - search.length);
