@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 1.2.2
+
+- [#7] Normalize method names to uppercase.
+
 ### 1.2.1
 
 - [#4] Use simple local polyfills for browser compatibility.
@@ -22,5 +26,8 @@
 [#1]:https://github.com/godaddy/reduxful/pull/1
 [#3]:https://github.com/godaddy/reduxful/pull/3
 [#4]:https://github.com/godaddy/reduxful/pull/4
+[#5]:https://github.com/godaddy/reduxful/pull/5
+[#6]:https://github.com/godaddy/reduxful/pull/6
+[#7]:https://github.com/godaddy/reduxful/pull/7
 [transform-url]:https://github.com/godaddy/transform-url#readme
 [ApiConfig]:https://github.com/godaddy/reduxful/blob/master/docs/api.md#apiconfig--object
