@@ -63,7 +63,7 @@ export function hasError(resource) {
  * @private
  */
 export function parseReqDesc(reqDesc) {
-  reqDesc.method = (reqDesc.method || 'get').toLowerCase();
+  reqDesc.method = (reqDesc.method || 'GET').toUpperCase();
 
   if (reqDesc.hasOwnProperty('withCredentials')) {
     // eslint-disable-next-line no-console
