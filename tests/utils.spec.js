@@ -133,18 +133,18 @@ describe('Utils', () => {
       expect(results).toBeInstanceOf(Object);
     });
 
-    it('normalizes method name lowercase', () => {
+    it('normalizes method name uppercase', () => {
       results = parseReqDesc({
         method: 'Post'
       });
 
-      expect(results).toHaveProperty('method', 'post');
+      expect(results).toHaveProperty('method', 'POST');
     });
 
-    it('normalizes method as get if missing', () => {
+    it('normalizes method as GET if missing', () => {
       results = parseReqDesc({});
 
-      expect(results).toHaveProperty('method', 'get');
+      expect(results).toHaveProperty('method', 'GET');
     });
 
     it('issues deprecation warning if withCredentials sets', () => {
@@ -196,18 +196,25 @@ describe('Utils', () => {
     it('passes entries through parseReqDesc', () => {
       jest.spyOn(utils, 'parseReqDesc');
       results = parseApiDesc({
-        test: {},
+        test1: {},
         test2: {
           method: 'Post'
+        },
+        test3: {
+          method: 'patch'
         }
       });
 
-      expect(results).toHaveProperty('test', expect.objectContaining({
-        method: 'get'
+      expect(results).toHaveProperty('test1', expect.objectContaining({
+        method: 'GET'
       }));
 
       expect(results).toHaveProperty('test2', expect.objectContaining({
-        method: 'post'
+        method: 'POST'
+      }));
+
+      expect(results).toHaveProperty('test3', expect.objectContaining({
+        method: 'PATCH'
       }));
     });
   });
