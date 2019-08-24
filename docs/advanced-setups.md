@@ -142,7 +142,7 @@ const apiDesc = {
   },
   getDoodadList: {
     url: 'http://api.my-service.com/doodads',
-+     dataTranform: (data) => fixup(data)
++     dataTransform: (data) => fixup(data)
   },
 ```
  
