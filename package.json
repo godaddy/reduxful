@@ -33,7 +33,7 @@
     "pretest": "yarn lint",
     "test": "yarn test:jest && yarn test:types",
     "test:jest": "jest",
-    "test:types": "tsc --noEmit ./typings/*.ts",
+    "test:types": "tsc --lib es2015,dom --noEmit ./typings/*.ts",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls",
