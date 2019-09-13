@@ -3,7 +3,7 @@ declare module 'reduxful' {
   export interface RequestAdapterOptions {
     method: string;
     url: string;
-    headers: Map<string, string>;
+    headers: { [key: string]: string };
     withCredentials: boolean;
     body: any;
   }
@@ -67,19 +67,19 @@ declare module 'reduxful' {
   export type SelectorFn = (state: Object, params: Object) => Resource;
 
   export interface ReduxfulProps {
-    actionCreators: Map<string, ActionCreatorFn>;
-    actions: Map<string, ActionCreatorFn>;
-    reducers: Map<string, ReducerFn>;
-    reducerMap: Map<string, ReducerFn>;
-    selectors: Map<string, SelectorFn>;
+    actionCreators: { [key: string]: ActionCreatorFn };
+    actions: { [key: string]: ActionCreatorFn };
+    reducers: { [key: string]: ReducerFn };
+    reducerMap: { [key: string]: ReducerFn };
+    selectors: { [key: string]: SelectorFn };
   }
 
   class Reduxful implements ReduxfulProps {
-    public actionCreators: Map<string, ActionCreatorFn>;
-    public actions: Map<string, ActionCreatorFn>;
-    public reducers: Map<string, ReducerFn>;
-    public reducerMap: Map<string, ReducerFn>;
-    public selectors: Map<string, SelectorFn>;
+    public actionCreators: { [key: string]: ActionCreatorFn };
+    public actions: { [key: string]: ActionCreatorFn };
+    public reducers: { [key: string]: ReducerFn };
+    public reducerMap: { [key: string]: ReducerFn };
+    public selectors: { [key: string]: SelectorFn };
     constructor(apiName: string, apiDesc: ApiDescription, apiConfig?: ApiConfig);
   }
 
