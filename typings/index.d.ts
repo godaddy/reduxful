@@ -42,7 +42,7 @@ declare module 'reduxful' {
 
   export interface RequestDescription<Options = Object> {
     url: string | UrlTemplateFn;
-    method: string;
+    method?: string;
     resourceAlias?: string;
     resourceData?: any;
     dataTransform?: TransformFn;
