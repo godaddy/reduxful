@@ -10,10 +10,8 @@ declare module 'reduxful' {
 
   export type RequestAdapter = (options: RequestAdapterOptions) => Promise<any>;
 
-  export type Fetcher = (url: string, outOpts: Object) => Promise<any>;
-
   export function makeFetchAdapter(
-    fetcher: Fetcher,
+    fetcher: typeof fetch,
     defaultOptions?: Object
   ): RequestAdapter;
 
@@ -36,13 +34,30 @@ declare module 'reduxful' {
   ): string;
 
   // reduxful
-  export type ApiDescription = Object;
+  export type TransformFn = (data: any, context?: { params?: Object }) => any;
 
-  export type OptionsFn = (getState: () => any) => Object;
+  export type UrlTemplateFn = (getState: () => any) => string;
 
-  export interface ApiConfig {
+  export type OptionsFn<Options = Object> = (getState: () => any) => Options;
+
+  export interface RequestDescription<Options = Object> {
+    url: string | UrlTemplateFn;
+    method: string;
+    resourceAlias?: string;
+    resourceData?: any;
+    dataTransform?: TransformFn;
+    errorTransform?: TransformFn;
+    repeatRequestDelay?: number;
+    options?: Options | OptionsFn<Options>;
+  }
+
+  export interface ApiDescription {
+    [key: string]: RequestDescription;
+  }
+
+  export interface ApiConfig<Options = Object> {
     requestAdapter?: RequestAdapter;
-    options?: OptionsFn;
+    options?: Options | OptionsFn<Options>;
   }
 
   export interface Action {
@@ -57,12 +72,12 @@ declare module 'reduxful' {
     getState: () => any
   ) => Promise<Action>;
 
-  export type ActionCreatorFn = (
-    params: Object,
-    options?: OptionsFn
+  export type ActionCreatorFn<Options = Object> = (
+    params: { [paramName: string]: any },
+    options?: Options | OptionsFn<Options>
   ) => ActionCreatorThunkFn;
 
-  export type ReducerFn = (state: Object, action: Object) => Object;
+  export type ReducerFn<S = any> = (state: S, action: Object) => S;
 
   export type SelectorFn = (state: Object, params: Object) => Resource;
 
@@ -86,7 +101,7 @@ declare module 'reduxful' {
   export function setupApi(
     apiName: string,
     apiDesc: ApiDescription,
-    config?: Object
+    config?: ApiConfig
   ): Reduxful;
 
   export default Reduxful;
