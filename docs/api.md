@@ -186,7 +186,7 @@ Create new RESTful configuration for Redux.
 | --- | --- | --- |
 | apiName | <code>String</code> | Name of the REST API |
 | apiDesc | [<code>ApiDescription</code>](#ApiDescription) | Description object of target REST API |
-| [config] | <code>Object</code> | Optional configuration settings |
+| [config] | [<code>ApiConfig</code>](#ApiConfig) | Optional configuration settings |
 | [config.requestAdapter] | [<code>RequestAdapter</code>](#RequestAdapter) | Request adapter to use |
 | [config.options] | <code>Object</code> \| [<code>OptionsFn</code>](#OptionsFn) | Options to be passed to the request adapter |
 
@@ -353,7 +353,7 @@ Request Description object
 | Name | Type | Description |
 | --- | --- | --- |
 | url | <code>String</code> \| [<code>UrlTemplateFn</code>](#UrlTemplateFn) | URL template of the REST endpoint. Placeholders can be set, with final URL built by [transform-url](https://github.com/godaddy/transform-url#readme). |
-| method | <code>String</code> | HTTP method to use |
+| [method] | <code>String</code> | HTTP method to use |
 | [resourceAlias] | <code>String</code> | Resource name alias |
 | [resourceData] | <code>Object</code> \| <code>Array</code> \| <code>\*</code> | Optional initial resource data |
 | [dataTransform] | [<code>TransformFn</code>](#TransformFn) | Function to fixup request response |

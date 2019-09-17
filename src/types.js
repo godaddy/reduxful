@@ -20,7 +20,7 @@
  *
  * @property {String|UrlTemplateFn} url - URL template of the REST endpoint.
  * Placeholders can be set, with final URL built by [transform-url](https://github.com/godaddy/transform-url#readme).
- * @property {String} method - HTTP method to use
+ * @property {String} [method] - HTTP method to use
  * @property {String} [resourceAlias] - Resource name alias
  * @property {Object|Array|*} [resourceData] - Optional initial resource data
  * @property {TransformFn} [dataTransform] - Function to fixup request response

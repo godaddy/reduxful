@@ -84,7 +84,7 @@ Reduxful.setRequestAdapter = setRequestAdapter;
  *
  * @param {String} apiName - Name of the REST API
  * @param {ApiDescription} apiDesc - Description object of target REST API
- * @param {Object} [config] - Optional configuration settings
+ * @param {ApiConfig} [config] - Optional configuration settings
  * @param {RequestAdapter} [config.requestAdapter] - Request adapter to use
  * @param {Object|OptionsFn} [config.options] - Options to be passed to the request adapter
  * @returns {Reduxful} instance
