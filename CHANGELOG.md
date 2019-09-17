@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 1.3.0
+
+- [#9] Add TypeScript support.
+
 ### 1.2.2
 
 - [#7] Normalize method names to uppercase.
@@ -29,5 +33,6 @@
 [#5]:https://github.com/godaddy/reduxful/pull/5
 [#6]:https://github.com/godaddy/reduxful/pull/6
 [#7]:https://github.com/godaddy/reduxful/pull/7
+[#9]:https://github.com/godaddy/reduxful/pull/9
 [transform-url]:https://github.com/godaddy/transform-url#readme
 [ApiConfig]:https://github.com/godaddy/reduxful/blob/master/docs/api.md#apiconfig--object
