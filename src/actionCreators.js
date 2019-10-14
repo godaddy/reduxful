@@ -57,8 +57,8 @@ export function makeSubActionsCreators(apiName, resourceName, reqDesc) {
  *
  * @param {Function} dispatch - Dispatch from store
  * @param {RequestDescription} reqDesc - Request description
- * @param {Object} subActions - Generated subActions for action creators
- * @param {Object} params - Request path and query params
+ * @param {object} subActions - Generated subActions for action creators
+ * @param {object} params - Request path and query params
  * @returns {Function[]} dispatchers
  * @private
  */
@@ -84,11 +84,11 @@ export function createDispatchers(dispatch, reqDesc, subActions, params) {
 /**
  * Check if duration between request and last response is less than required delay
  *
- * @param {String} key - Request state key
+ * @param {string} key - Request state key
  * @param {RequestDescription} reqDesc - Request description
  * @param {Resource} resource - Resource
- * @param {Object} force - If the request delay should be ignored
- * @returns {Boolean} result
+ * @param {object} force - If the request delay should be ignored
+ * @returns {boolean} result
  * @private
  */
 export function shouldThrottle(key, reqDesc, resource, force) {
@@ -103,11 +103,11 @@ export function shouldThrottle(key, reqDesc, resource, force) {
 /**
  * Get request options allow for functions with access to redux getState
  *
- * @param {Object|Function} apiOptions - Options define at API level
- * @param {Object|Function} reqOptions - Options define at resource level
- * @param {Object|Function} actionOptions - Options set by action
+ * @param {object|Function} apiOptions - Options define at API level
+ * @param {object|Function} reqOptions - Options define at resource level
+ * @param {object|Function} actionOptions - Options set by action
  * @param {Function} getState - Get Redux state
- * @returns {Object} options
+ * @returns {object} options
  * @private
  */
 export function getRequestOptions(apiOptions, reqOptions, actionOptions, getState) {
@@ -121,11 +121,11 @@ export function getRequestOptions(apiOptions, reqOptions, actionOptions, getStat
 /**
  * Generate the actionCreator functions
  *
- * @param {String} apiName - Name of the REST API
+ * @param {string} apiName - Name of the REST API
  * @param {ApiDescription} apiDesc - Description object of target REST API
  * @param {PromiseKeeper} promiseKeeper - Track existing promises for debouncing
  * @param {ApiConfig} [apiConfig] - Optional configuration settings
- * @returns {Object.<String, ActionCreatorFn>} actionCreators
+ * @returns {Object.<string, ActionCreatorFn>} actionCreators
  * @private
  */
 export default function createActionCreators(apiName, apiDesc, promiseKeeper, apiConfig = {}) {
@@ -144,8 +144,8 @@ export default function createActionCreators(apiName, apiDesc, promiseKeeper, ap
      *
      * @typedef {Function} ActionCreatorFn
      *
-     * @param {Object} params - Params applied to the url path or query
-     * @param {Object|OptionsFn} [options] - Options to be passed to the request adapter
+     * @param {object} params - Params applied to the url path or query
+     * @param {object|OptionsFn} [options] - Options to be passed to the request adapter
      * @returns {ActionCreatorThunkFn} thunk
      *
      * @property {SubActionCreatorFn} reset - Reset resource to baseline

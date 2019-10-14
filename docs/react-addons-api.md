@@ -24,13 +24,13 @@ Base propTypes shape used for validation of resources in React components.
 
 | Name | Type |
 | --- | --- |
-| value | <code>Object</code> \| <code>Array</code> \| <code>String</code> \| <code>\*</code> | 
-| error | <code>Object</code> \| <code>Array</code> \| <code>String</code> \| <code>\*</code> | 
-| hasError | <code>Boolean</code> | 
-| isLoaded | <code>Boolean</code> | 
-| isUpdating | <code>Boolean</code> | 
-| requestTime | <code>Number</code> | 
-| responseTime | <code>Number</code> | 
+| value | <code>object</code> \| <code>Array</code> \| <code>string</code> \| <code>\*</code> | 
+| error | <code>object</code> \| <code>Array</code> \| <code>string</code> \| <code>\*</code> | 
+| hasError | <code>boolean</code> | 
+| isLoaded | <code>boolean</code> | 
+| isUpdating | <code>boolean</code> | 
+| requestTime | <code>number</code> | 
+| responseTime | <code>number</code> | 
 
 <a name="extendResourceShape"></a>
 
@@ -42,7 +42,7 @@ Use to extend the `resourceShape` to define `value` and/or `error` structures.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| propTypes | <code>Object</code> | PropTypes to override resource shapes |
-| [propTypes.value] | <code>Object</code> | Shape of expected value |
-| [propTypes.error] | <code>Object</code> | Shape of expected error |
+| propTypes | <code>object</code> | PropTypes to override resource shapes |
+| [propTypes.value] | <code>object</code> | Shape of expected value |
+| [propTypes.error] | <code>object</code> | Shape of expected error |
 

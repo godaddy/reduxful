@@ -1,64 +1,64 @@
 /**
  * Resource object
  *
- * @typedef {Object} Resource
+ * @typedef {object} Resource
  *
- * @property {Object|Array|*} value - Body of the api response
- * @property {Object|Array|*} error - Body of the api error response
- * @property {Boolean} hasError - True if api response returned as an error
- * @property {Boolean} isLoaded - True if api response returned as success
- * @property {Boolean} isUpdating - True if a request is pending
- * @property {Number|null} requestTime - Timestamp when new request started
- * @property {Number|null} responseTime - Timestamp when response received
+ * @property {object|Array|*} value - Body of the api response
+ * @property {object|Array|*} error - Body of the api error response
+ * @property {boolean} hasError - True if api response returned as an error
+ * @property {boolean} isLoaded - True if api response returned as success
+ * @property {boolean} isUpdating - True if a request is pending
+ * @property {number|null} requestTime - Timestamp when new request started
+ * @property {number|null} responseTime - Timestamp when response received
  */
 
 
 /**
  * Request Description object
  *
- * @typedef {Object} RequestDescription
+ * @typedef {object} RequestDescription
  *
- * @property {String|UrlTemplateFn} url - URL template of the REST endpoint.
+ * @property {string|UrlTemplateFn} url - URL template of the REST endpoint.
  * Placeholders can be set, with final URL built by [transform-url](https://github.com/godaddy/transform-url#readme).
- * @property {String} [method] - HTTP method to use
- * @property {String} [resourceAlias] - Resource name alias
- * @property {Object|Array|*} [resourceData] - Optional initial resource data
+ * @property {string} [method] - HTTP method to use
+ * @property {string} [resourceAlias] - Resource name alias
+ * @property {object|Array|*} [resourceData] - Optional initial resource data
  * @property {TransformFn} [dataTransform] - Function to fixup request response
  * @property {TransformFn} [errorTransform] - Function to fixup request error response
- * @property {Number} [repeatRequestDelay] - Required delay time in milliseconds between repeated requests
- * @property {Object|OptionsFn} [options] - Options to be passed to the request adapter
+ * @property {number} [repeatRequestDelay] - Required delay time in milliseconds between repeated requests
+ * @property {object|OptionsFn} [options] - Options to be passed to the request adapter
  */
 
 
 /**
  * Api Description object
  *
- * @typedef {Object} ApiDescription
+ * @typedef {object} ApiDescription
  *
- * @type {Object.<String, RequestDescription>} - requestName: reqDesc
+ * @type {Object.<string, RequestDescription>} - requestName: reqDesc
  */
 
 
 /**
  * Api Config object
  *
- * @typedef {Object} ApiConfig
+ * @typedef {object} ApiConfig
  *
  * @property {RequestAdapter} [requestAdapter] - Adapter for request library
- * @property {Object|OptionsFn} [options] - Options to be passed to the request adapter
+ * @property {object|OptionsFn} [options] - Options to be passed to the request adapter
  */
 
 
 /**
  * [Flux Standard Action](https://github.com/redux-utilities/flux-standard-action) compliant action.
  *
- * @typedef {Object} Action
+ * @typedef {object} Action
  *
- * @property {String} type - The type of action in the format `<ApiName>_<requestName>_<result>`
- * @property {String} payload - Transformed resource value or error; body of response.
- * @property {Object} meta - Action metadata
- * @property {String} meta.key - Key of the particular resource
- * @property {Boolean} [error] - Whether the action is an error
+ * @property {string} type - The type of action in the format `<ApiName>_<requestName>_<result>`
+ * @property {string} payload - Transformed resource value or error; body of response.
+ * @property {object} meta - Action metadata
+ * @property {string} meta.key - Key of the particular resource
+ * @property {boolean} [error] - Whether the action is an error
  */
 
 
@@ -68,7 +68,7 @@
  * @typedef {Function} OptionsFn
  *
  * @param {Function} getState - Gets the current redux state
- * @returns {Object} options
+ * @returns {object} options
  */
 
 
@@ -79,7 +79,7 @@
  * @typedef {Function} UrlTemplateFn
  *
  * @param {Function} getState - Gets the current redux state
- * @returns {String} urlTemplate
+ * @returns {string} urlTemplate
  */
 
 
@@ -88,9 +88,9 @@
  *
  * @typedef {Function} SubActionCreatorFn
  *
- * @param {Object} params - Params applied to the url path or query
- * @param {Object} payload - Transformed resource value or error; body of response.
- * @returns {Object} action
+ * @param {object} params - Params applied to the url path or query
+ * @param {object} payload - Transformed resource value or error; body of response.
+ * @returns {object} action
  */
 
 
@@ -99,8 +99,8 @@
  *
  * @typedef {Function} SelectorFn
  *
- * @param {Object} state - Redux state to select resource from
- * @param {Object} params - Params used to key a particular resource request
+ * @param {object} state - Redux state to select resource from
+ * @param {object} params - Params used to key a particular resource request
  * @returns {Resource} resource
  */
 
@@ -110,9 +110,9 @@
  *
  * @typedef {Function} ReducerFn
  *
- * @param {Object} state - State
- * @param {Object} action - Action
- * @returns {Object} newState
+ * @param {object} state - State
+ * @param {object} action - Action
+ * @returns {object} newState
  */
 
 
@@ -121,8 +121,8 @@
  *
  * @typedef {Function} TransformFn
  *
- * @param {Object|Array|*} data - Body of the api response
- * @param {Object} [context] - Context
- * @param {Object} [context.params] - Params from action for request
+ * @param {object|Array|*} data - Body of the api response
+ * @param {object} [context] - Context
+ * @param {object} [context.params] - Params from action for request
  * @returns {*} data
  */

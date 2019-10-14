@@ -15,9 +15,9 @@ const resourcePropTypes = {
 /**
  * Use to extend the `resourceShape` to define `value` and/or `error` structures.
  *
- * @param {Object} propTypes - PropTypes to override resource shapes
- * @param {Object} [propTypes.value] - Shape of expected value
- * @param {Object} [propTypes.error] - Shape of expected error
+ * @param {object} propTypes - PropTypes to override resource shapes
+ * @param {object} [propTypes.value] - Shape of expected value
+ * @param {object} [propTypes.error] - Shape of expected error
  * @returns {shape} shape
  */
 function extendResourceShape(propTypes = {}) {
@@ -31,13 +31,13 @@ function extendResourceShape(propTypes = {}) {
 /**
  * Base propTypes shape used for validation of resources in React components.
  *
- * @property {Object|Array|String|*} value
- * @property {Object|Array|String|*} error
- * @property {Boolean} hasError
- * @property {Boolean} isLoaded
- * @property {Boolean} isUpdating
- * @property {Number} requestTime
- * @property {Number} responseTime
+ * @property {object|Array|string|*} value
+ * @property {object|Array|string|*} error
+ * @property {boolean} hasError
+ * @property {boolean} isLoaded
+ * @property {boolean} isUpdating
+ * @property {number} requestTime
+ * @property {number} responseTime
  */
 const resourceShape = shape(resourcePropTypes);
 

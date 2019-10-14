@@ -2,7 +2,7 @@
  * Check if object is a function.
  *
  * @param {*} maybeFn - Potential function
- * @returns {Boolean} result
+ * @returns {boolean} result
  * @private
  */
 export function isFunction(maybeFn) {
@@ -12,9 +12,9 @@ export function isFunction(maybeFn) {
 /**
  * Builds the resource key based on the parameters passed.
  *
- * @param {String} reqName - Name of the API request.
- * @param {Object.<String, String|Number>} params - Parameters used as URL or Query params
- * @returns {String} resource key
+ * @param {string} reqName - Name of the API request.
+ * @param {Object.<string, string|number>} params - Parameters used as URL or Query params
+ * @returns {string} resource key
  */
 export function getResourceKey(reqName, params) {
   if (!params) return reqName;
@@ -29,7 +29,7 @@ export function getResourceKey(reqName, params) {
  * Helper function to check if a Resource has been loaded.
  *
  * @param {Resource} resource - Resource object
- * @returns {Boolean} result
+ * @returns {boolean} result
  */
 export function isLoaded(resource) {
   return !!resource && resource.isLoaded;
@@ -39,7 +39,7 @@ export function isLoaded(resource) {
  * Helper function to check of a Resource is being updated.
  *
  * @param {Resource} resource - Resource object
- * @returns {Boolean} result
+ * @returns {boolean} result
  */
 export function isUpdating(resource) {
   return !!resource && resource.isUpdating;
@@ -49,7 +49,7 @@ export function isUpdating(resource) {
  * Helper function to check if a Resource has an error.
  *
  * @param {Resource} resource - Resource object
- * @returns {Boolean} result
+ * @returns {boolean} result
  */
 export function hasError(resource) {
   return !!resource && resource.hasError;
@@ -94,9 +94,9 @@ export function parseApiDesc(apiDesc) {
 /**
  * Get the url template from static string or dynamically with redux state.
  *
- * @param {String|Function} url - Url template
+ * @param {string|Function} url - Url template
  * @param {Function} getState - Get Redux state
- * @returns {String} url
+ * @returns {string} url
  * @private
  */
 export function getUrlTemplate(url, getState) {
@@ -107,9 +107,9 @@ export function getUrlTemplate(url, getState) {
 /**
  * Determines whether a string begins with the characters of a specified string
  *
- * @param {String} str - String to check
- * @param {String} search - String to search for at the start
- * @returns {Boolean} result
+ * @param {string} str - string to check
+ * @param {string} search - string to search for at the start
+ * @returns {boolean} result
  * @private
  */
 export function startsWith(str, search) {
@@ -119,9 +119,9 @@ export function startsWith(str, search) {
 /**
  * Determines whether a string ends with the characters of a specified string
  *
- * @param {String} str - String to check
- * @param {String} search - String to search for at the end
- * @returns {Boolean} result
+ * @param {string} str - string to check
+ * @param {string} search - string to search for at the end
+ * @returns {boolean} result
  * @private
  */
 export function endsWith(str, search) {

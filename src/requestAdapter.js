@@ -13,12 +13,12 @@ global.Reduxful = global.Reduxful || {};
 /**
  * RequestAdapter Options
  *
- * @typedef {Object} RequestAdapterOptions
- * @property {Object} options
- * @property {String} options.method - HTTP method to use (GET, POST, etc.)
- * @property {String} options.url - URL to call
- * @property {Object.<String,String>} options.headers - Header for request
- * @property {Boolean} options.withCredentials - Should cookies be passed for cross-origin requests
+ * @typedef {object} RequestAdapterOptions
+ * @property {object} options
+ * @property {string} options.method - HTTP method to use (GET, POST, etc.)
+ * @property {string} options.url - URL to call
+ * @property {Object.<string,string>} options.headers - Header for request
+ * @property {boolean} options.withCredentials - Should cookies be passed for cross-origin requests
  * @property {*} options.body - Optional body of request
  */
 
@@ -52,9 +52,9 @@ export function setRequestAdapter(requestAdapter) {
 /**
  * Makes a request using the request adapter defined by api config the global default.
  *
- * @param {String} method - Request HTTP Method
- * @param {String} url - Transformed URL of the rest endpoint
- * @param {Object} [options] - Additional request options
+ * @param {string} method - Request HTTP Method
+ * @param {string} url - Transformed URL of the rest endpoint
+ * @param {object} [options] - Additional request options
  * @param {ApiConfig} [config] - Api configuration
  * @returns {Promise} promise
  * @private

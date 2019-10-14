@@ -54,7 +54,7 @@ handlers.onComplete = function (state, action) {
 /**
  * Creates a reducer which handles actions for a given api name.
  *
- * @param {String} apiName - Name of the api
+ * @param {string} apiName - Name of the api
  * @returns {ReducerFn} reducer
  * @private
  */

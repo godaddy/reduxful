@@ -4,7 +4,7 @@ export const handlers = {};
  * Reject promise if Fetch response is not `ok`
  *
  * @param {Response} response - Fetch response
- * @param {Boolean} response.ok - Did response have a bad status
+ * @param {boolean} response.ok - Did response have a bad status
  * @param {JSON|string} data - Decoded response body
  * @returns {Promise} promise
  */
@@ -37,7 +37,7 @@ handlers.decode = function (response) {
  * Make an adapter to match the RequestAdapter interface using Fetch
  *
  * @param {Function} fetcher - Fetch API or ponyfill
- * @param {Object} [defaultOptions] - Any default request options
+ * @param {object} [defaultOptions] - Any default request options
  * @returns {Function} fetchAdapter
  */
 export function makeFetchAdapter(fetcher, defaultOptions = {}) {
