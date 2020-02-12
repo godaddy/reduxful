@@ -21,7 +21,9 @@ handlers.finish = function (response, data) {
 handlers.decode = function (response) {
   const contentType = response.headers.get('content-type');
 
-  if (contentType.includes('application/json')) {
+  if (!contentType && response.status === 204) {
+    return handlers.finish(response, null);
+  } else if (contentType.includes('application/json')) {
     return response.json()
       .then(data => handlers.finish(response, data));
   }

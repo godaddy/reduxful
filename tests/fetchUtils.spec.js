@@ -137,6 +137,14 @@ describe('fetchUtils', () => {
       });
     });
 
+    it('decodes and resolves no content on a 204 response', (done) => {
+      mockResponse.status = 204;
+      handlers.decode(mockResponse).then(data => {
+        expect(data).toBe(null);
+        done();
+      });
+    });
+
     it('rejects for unhandled content types', (done) => {
       mockResponse.text = jest.fn().mockImplementation(() => {
         throw new Error('`text` not implemented');
