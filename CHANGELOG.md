@@ -1,26 +1,30 @@
 # CHANGELOG
 
+### 1.3.1
+
+- Fetch adapter handles 204 no content ([#15])
+
 ### 1.3.0
 
-- [#9] Add TypeScript support.
+- Add TypeScript support ([#9])
 
 ### 1.2.2
 
-- [#7] Normalize method names to uppercase.
+- Normalize method names to uppercase ([#7])
 
 ### 1.2.1
 
-- [#4] Use simple local polyfills for browser compatibility.
-- [#5, #6] Docs and lock fixes.
+- Use simple local polyfills for browser compatibility ([#4])
+- Docs and lock fixes ([#5], [#6])
 
 ### 1.2.0
 
-- [#3] No longer setting default headers by `makeFetchAdapter`.
+- No longer setting default headers by `makeFetchAdapter` ([#3])
   Instead use `options` in [ApiConfig].
 
 ### 1.1.0
 
-- [#1] Switch to use [transform-url] for url templating.
+- Switch to use [transform-url] for url templating ([#1])
 
 ### 1.0.0
 
@@ -34,5 +38,6 @@
 [#6]:https://github.com/godaddy/reduxful/pull/6
 [#7]:https://github.com/godaddy/reduxful/pull/7
 [#9]:https://github.com/godaddy/reduxful/pull/9
+[#15]:https://github.com/godaddy/reduxful/pull/15
 [transform-url]:https://github.com/godaddy/transform-url#readme
 [ApiConfig]:https://github.com/godaddy/reduxful/blob/master/docs/api.md#apiconfig--object
