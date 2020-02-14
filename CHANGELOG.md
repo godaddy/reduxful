@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 1.3.2
+
+- Fix to always return null for 204 status ([#16])
+
 ### 1.3.1
 
 - Fetch adapter handles 204 no content ([#15])
@@ -39,5 +43,6 @@
 [#7]:https://github.com/godaddy/reduxful/pull/7
 [#9]:https://github.com/godaddy/reduxful/pull/9
 [#15]:https://github.com/godaddy/reduxful/pull/15
+[#16]:https://github.com/godaddy/reduxful/pull/16
 [transform-url]:https://github.com/godaddy/transform-url#readme
 [ApiConfig]:https://github.com/godaddy/reduxful/blob/master/docs/api.md#apiconfig--object
