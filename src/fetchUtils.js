@@ -23,7 +23,7 @@ handlers.decode = function (response) {
   if (response.status === 204) {
     return handlers.finish(response, null);
   }
-  
+
   const contentType = response.headers.get('content-type');
 
   if (contentType.includes('application/json')) {
