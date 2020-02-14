@@ -19,11 +19,14 @@ handlers.finish = function (response, data) {
  * @returns {Promise} promise
  */
 handlers.decode = function (response) {
+  // No content, ignore response and return success
+  if (response.status === 204) {
+    return handlers.finish(response, null);
+  }
+
   const contentType = response.headers.get('content-type');
 
-  if (!contentType && response.status === 204) {
-    return handlers.finish(response, null);
-  } else if (contentType.includes('application/json')) {
+  if (contentType.includes('application/json')) {
     return response.json()
       .then(data => handlers.finish(response, data));
   }
