@@ -44,7 +44,7 @@
   "dependencies": {
     "es6-error": "^4.1.1",
     "prop-types": "^15.5.10",
-    "transform-url": "^1.0.0"
+    "transform-url": "^1.1.1"
   },
   "devDependencies": {
     "babel": "^6.23.0",
