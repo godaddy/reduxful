@@ -18,6 +18,11 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
+"@ungap/url-search-params@^0.1.2":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@ungap/url-search-params/-/url-search-params-0.1.4.tgz#727e9b4c811beaa6be6d7e4cc0516663c884cfd0"
+  integrity sha512-RLwrxCTDNiNev9hpr9rDq8NyeQ8Nn0X1we4Wu7Tlf368I8r+7hBj3uObhifhuLk74egaYaSX5nUsBlWz6kjj+A==
+
 abab@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.0.tgz#aba0ab4c5eee2d4c79d3487d85450fb2376ebb0f"
@@ -4711,12 +4716,12 @@ tr46@^1.0.1:
   dependencies:
     punycode "^2.1.0"
 
-transform-url@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/transform-url/-/transform-url-1.0.1.tgz#8865eda7e0e5849f579a5469737a8cf407629968"
-  integrity sha512-W7kkaDYa3NXF+40LDn6nP9aq+ctZB2pWPR+SoRTi8qN/GQoaga0fomDNkdTI7VxOc0BHHD4d9SCqK7Ft9Ul0Cg==
+transform-url@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/transform-url/-/transform-url-1.1.1.tgz#56d4919723e6bfade47c115099d7ab915843385b"
+  integrity sha512-tnw+GkxMY9X1PWXPSIBTj0ENdy1HbE43eT7swazG7jM9RAM3Ko7hpMw2tX8yNeNmbrFkQQj4bmMxHGzHECkSqQ==
   dependencies:
-    url-search-params "^1.1.0"
+    "@ungap/url-search-params" "^0.1.2"
 
 trim-right@^1.0.1:
   version "1.0.1"
@@ -4804,11 +4809,6 @@ urix@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
   integrity sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=
-
-url-search-params@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/url-search-params/-/url-search-params-1.1.0.tgz#865669a6e4e9e5543f86fc972b27c91485375326"
-  integrity sha512-XiO5GLAxmlZgdLob/RmKZRc2INHrssMbpwD6O46JkB1aEJO4fkV3x3mR6+CDX01ijfEUwvfwCiUQZrKqfm1ILw==
 
 use@^3.1.0:
   version "3.1.1"
