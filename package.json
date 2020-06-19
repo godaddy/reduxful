@@ -1,6 +1,6 @@
 {
   "name": "reduxful",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Redux state from RESTful services",
   "main": "./lib",
   "browser": "./lib",

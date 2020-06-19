@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### 1.3.3
+
+- Fix to have unique promise keeper instance per store ([#19])
+- Update dependencies ([#17], [#18])
+
 ### 1.3.2
 
 - Fix to always return null for 204 status ([#16])
@@ -44,5 +49,8 @@
 [#9]:https://github.com/godaddy/reduxful/pull/9
 [#15]:https://github.com/godaddy/reduxful/pull/15
 [#16]:https://github.com/godaddy/reduxful/pull/16
+[#17]:https://github.com/godaddy/reduxful/pull/17
+[#18]:https://github.com/godaddy/reduxful/pull/18
+[#19]:https://github.com/godaddy/reduxful/pull/19
 [transform-url]:https://github.com/godaddy/transform-url#readme
 [ApiConfig]:https://github.com/godaddy/reduxful/blob/master/docs/api.md#apiconfig--object
