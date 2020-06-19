@@ -3,8 +3,6 @@ import { setRequestAdapter } from './requestAdapter';
 import createActionCreators from './actionCreators';
 import createReducer from './reducers';
 import createSelectors from './selectors';
-import PromiseKeeper from './promiseKeeper';
-
 
 /**
  * Main class which manages RESTful requests and state with Redux.
@@ -25,8 +23,7 @@ class Reduxful {
   constructor(apiName, apiDesc, apiConfig = {}) {
     this.name = apiName;
     this._apiDesc = parseApiDesc(apiDesc);
-    this._promiseKeeper = new PromiseKeeper();
-    this._actionCreators = createActionCreators(this.name, this._apiDesc, this._promiseKeeper, apiConfig);
+    this._actionCreators = createActionCreators(this.name, this._apiDesc, apiConfig);
     this._reducer = createReducer(this.name);
     this._selectors = createSelectors(this.name, this._apiDesc);
   }
