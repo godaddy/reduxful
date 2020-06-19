@@ -8,12 +8,10 @@ import createActionCreators, {
 } from '../src/actionCreators';
 import * as requestAdapter from '../src/requestAdapter';
 import { mockApiName, mockApiDesc } from './fixtures/mockApi';
-import PromiseKeeper from '../src/promiseKeeper';
 
 const mockPayload = { some: 'data' };
 const mockParams = { id: 1234 };
 const mockKey = 'getFruit__id:1234';
-const promiseKeeper = new PromiseKeeper();
 
 const fsaProperties = ['type', 'payload', 'error', 'meta'];
 
@@ -214,14 +212,14 @@ describe('ActionCreators', () => {
   describe('factory', () => {
 
     it('creates a map of functions', () => {
-      const actions = createActionCreators(mockApiName, mockApiDesc, promiseKeeper);
+      const actions = createActionCreators(mockApiName, mockApiDesc);
       expect(actions).toBeInstanceOf(Object);
       expect(actions).toHaveProperty('getFruit');
       expect(actions.getFruit).toBeInstanceOf(Function);
     });
 
     it('attaches sub-actionCreator functions', () => {
-      const actions = createActionCreators(mockApiName, mockApiDesc, promiseKeeper);
+      const actions = createActionCreators(mockApiName, mockApiDesc);
       expect(actions.getFruit).toHaveProperty('start', expect.any(Function));
       expect(actions.getFruit).toHaveProperty('success', expect.any(Function));
       expect(actions.getFruit).toHaveProperty('fail', expect.any(Function));
@@ -286,7 +284,7 @@ describe('ActionCreators', () => {
     let actions, dispatch, requestSpy, getState;
 
     beforeAll(() => {
-      actions = createActionCreators(mockApiName, mockApiDesc, promiseKeeper);
+      actions = createActionCreators(mockApiName, mockApiDesc);
       dispatch = jest.fn();
       ['getFruit', 'getFruits'].forEach(k => {
         ['start', 'success', 'fail'].forEach(sub => jest.spyOn(actions[k].subActions, sub));
@@ -296,6 +294,7 @@ describe('ActionCreators', () => {
     beforeEach(() => {
       requestSpy = jest.spyOn(requestAdapter, 'makeRequest').mockImplementation().mockResolvedValue({ name: 'Apricot' });
       dispatch.mockReset();
+      dispatch.mockResolvedValue();
       getState = () => ({});
     });
 
@@ -471,7 +470,7 @@ describe('ActionCreators', () => {
         expect(promise).toHaveProperty('catch');
       });
 
-      it('does not start make new request if promise in flight', () => {
+      it('does not make new request if promise in flight', () => {
         const thunk = actions.getFruit(mockParams);
         thunk(dispatch, getState);
         thunk(dispatch, getState);
@@ -483,6 +482,14 @@ describe('ActionCreators', () => {
         const firstPromise = thunk(dispatch, getState);
         const nextPromise = thunk(dispatch, getState);
         expect(firstPromise).toBe(nextPromise);
+      });
+
+      it('does not debounce if dispatched from a different store', () => {
+        const otherDispatch = jest.fn();
+        const thunk = actions.getFruit(mockParams);
+        const firstPromise = thunk(dispatch, getState);
+        const nextPromise = thunk(otherDispatch, getState);
+        expect(firstPromise).not.toBe(nextPromise);
       });
     });
   });

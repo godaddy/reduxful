@@ -2,8 +2,25 @@ import { getResourceKey, getUrlTemplate, isFunction } from './utils';
 import transformUrl from 'transform-url';
 import { makeRequest } from './requestAdapter';
 import * as constants from './constants';
+import PromiseKeeper from './promiseKeeper';
 
 const defaultTransformer = f => f;
+const _promiseKeepers = new WeakMap();
+
+/**
+ * Weakly map a promiseKeeper to Redux store to ensure debounced fetches are
+ * unique to store instance.
+ *
+ * @param {function} dispatch - Dispatch from Redux store
+ * @returns {PromiseKeeper} promiseKeeper - Instance for provided dispatch
+ * @private
+ */
+export function getPromiseKeeper(dispatch) {
+  if (!_promiseKeepers.has(dispatch)) {
+    _promiseKeepers.set(dispatch, new PromiseKeeper());
+  }
+  return _promiseKeepers.get(dispatch);
+}
 
 export function makeSubActionsCreators(apiName, resourceName, reqDesc) {
   const subActions = {};
@@ -123,12 +140,11 @@ export function getRequestOptions(apiOptions, reqOptions, actionOptions, getStat
  *
  * @param {String} apiName - Name of the REST API
  * @param {ApiDescription} apiDesc - Description object of target REST API
- * @param {PromiseKeeper} promiseKeeper - Track existing promises for debouncing
  * @param {ApiConfig} [apiConfig] - Optional configuration settings
  * @returns {Object.<String, ActionCreatorFn>} actionCreators
  * @private
  */
-export default function createActionCreators(apiName, apiDesc, promiseKeeper, apiConfig = {}) {
+export default function createActionCreators(apiName, apiDesc, apiConfig = {}) {
   const { options: apiOptions = {}} = apiConfig;
   return Object.keys(apiDesc).reduce((acc, name) => {
     const reqDesc = apiDesc[name];
@@ -173,6 +189,7 @@ export default function createActionCreators(apiName, apiDesc, promiseKeeper, ap
        * @returns {Promise.<Action>} promise
        */
       return (dispatch, getState) => {
+        const promiseKeeper = getPromiseKeeper(dispatch);
         const key = getResourceKey(resourceName, params);
         const resource = getState()[apiName] ? getState()[apiName][key] : null;
 
