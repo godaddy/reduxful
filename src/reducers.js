@@ -1,5 +1,3 @@
-import { startsWith, endsWith } from './utils';
-
 export const handlers = {};
 
 handlers.onReset = function (state, action) {
@@ -59,11 +57,14 @@ handlers.onComplete = function (state, action) {
  * @private
  */
 export default function createReducer(apiName) {
+  const reApiAction = new RegExp(`${apiName}_(RESET|START|SUCCESS|FAIL)`);
   return function reducer(state = {}, action) {
-    if (startsWith(action.type, apiName)) {
-      if (endsWith(action.type, 'RESET')) return handlers.onReset(state, action);
-      if (endsWith(action.type, 'START')) return handlers.onStart(state, action);
-      if (endsWith(action.type, 'SUCCESS') || endsWith(action.type, 'FAIL')) return handlers.onComplete(state, action);
+    const match = reApiAction.exec(action.type);
+    if (match) {
+      const type = match[1];
+      if (type === 'RESET') return handlers.onReset(state, action);
+      if (type === 'START') return handlers.onStart(state, action);
+      if (type === 'SUCCESS' || type === 'FAIL') return handlers.onComplete(state, action);
     }
     return state;
   };
