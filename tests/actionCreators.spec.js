@@ -491,6 +491,17 @@ describe('ActionCreators', () => {
         const nextPromise = thunk(otherDispatch, getState);
         expect(firstPromise).not.toBe(nextPromise);
       });
+
+      it('does not debounce if dispatched from a different instance', () => {
+        const otherActions = createActionCreators('api2', mockApiDesc);
+
+        const thunk = actions.getFruit(mockParams);
+        const thunk2 = otherActions.getFruit(mockParams);
+
+        const firstPromise = thunk(dispatch, getState);
+        const nextPromise = thunk2(dispatch, getState);
+        expect(firstPromise).not.toBe(nextPromise);
+      });
     });
   });
 });

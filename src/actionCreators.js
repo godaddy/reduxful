@@ -191,10 +191,11 @@ export default function createActionCreators(apiName, apiDesc, apiConfig = {}) {
       return (dispatch, getState) => {
         const promiseKeeper = getPromiseKeeper(dispatch);
         const key = getResourceKey(resourceName, params);
+        const promiseKey = `${apiName}-${key}`;
         const resource = getState()[apiName] ? getState()[apiName][key] : null;
 
         // debounce request
-        if (promiseKeeper.has(key)) return promiseKeeper.get(key);
+        if (promiseKeeper.has(promiseKey)) return promiseKeeper.get(promiseKey);
 
         if (shouldThrottle(key, reqDesc, resource, force)) {
           return Promise.resolve(resource.hasError ?
@@ -210,7 +211,7 @@ export default function createActionCreators(apiName, apiDesc, apiConfig = {}) {
         const allOptions = getRequestOptions(apiOptions, reqOptions, options, getState);
         const promise = makeRequest(reqDesc.method, url, { ...allOptions }, apiConfig)
           .then(onResolved, onRejected);
-        promiseKeeper.set(key, promise);
+        promiseKeeper.set(promiseKey, promise);
         return promise;
       };
     };
