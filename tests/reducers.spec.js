@@ -129,7 +129,7 @@ describe('Reducers', () => {
       expect(handlers.onReset).toHaveBeenCalled();
     });
 
-    it('does not handler for similarly named apis', () => {
+    it('does not handle for similarly named apis', () => {
       const inState = { bogus: 'bogus' };
       reducer(inState, { type: '2mockApi_START' });
       reducer(inState, { type: 'mockApi_2_START' });
@@ -138,7 +138,7 @@ describe('Reducers', () => {
       expect(handlers.onStart).not.toHaveBeenCalled();
     });
 
-    it('does not handler for unknown actions', () => {
+    it('does not handle for unknown actions', () => {
       const inState = { bogus: 'bogus' };
       reducer(inState, { type: 'mockApi_2START' });
       reducer(inState, { type: 'mockApi_START2' });
