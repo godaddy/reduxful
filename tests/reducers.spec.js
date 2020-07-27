@@ -131,8 +131,19 @@ describe('Reducers', () => {
 
     it('does not handler for similarly named apis', () => {
       const inState = { bogus: 'bogus' };
+      reducer(inState, { type: '2mockApi_START' });
       reducer(inState, { type: 'mockApi_2_START' });
       reducer(inState, { type: 'mockApi2_START' });
+      reducer(inState, { type: 'MOCKAPI_START' });
+      expect(handlers.onStart).not.toHaveBeenCalled();
+    });
+
+    it('does not handler for unknown actions', () => {
+      const inState = { bogus: 'bogus' };
+      reducer(inState, { type: 'mockApi_2START' });
+      reducer(inState, { type: 'mockApi_START2' });
+      reducer(inState, { type: 'mockApi__START' });
+      reducer(inState, { type: 'mockApi_start' });
       expect(handlers.onStart).not.toHaveBeenCalled();
     });
   });
