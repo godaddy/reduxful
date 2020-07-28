@@ -105,25 +105,12 @@ export function getUrlTemplate(url, getState) {
 }
 
 /**
- * Determines whether a string begins with the characters of a specified string
+ * Escape special characters for RegExp
  *
- * @param {String} str - String to check
- * @param {String} search - String to search for at the start
- * @returns {Boolean} result
- * @private
+ * @see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Escaping
+ * @param {string} string - Intended for expression
+ * @returns {string} escaped
  */
-export function startsWith(str, search) {
-  return str.indexOf(search) === 0;
-}
-
-/**
- * Determines whether a string ends with the characters of a specified string
- *
- * @param {String} str - String to check
- * @param {String} search - String to search for at the end
- * @returns {Boolean} result
- * @private
- */
-export function endsWith(str, search) {
-  return str.lastIndexOf(search) === (str.length - search.length);
+export function escapeRegExp(string) {
+  return string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
 }
