@@ -1,9 +1,12 @@
 # CHANGELOG
 
-### 1.3.4
+### 1.3.5
 
 - Fix debouncing for same action name across instances ([#21])
 - Fix reducing similar action names ([#22])
+
+### 1.3.4
+
 - Bump dependencies - regen lock file
 
 ### 1.3.3
