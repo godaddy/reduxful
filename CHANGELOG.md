@@ -1,5 +1,11 @@
 # CHANGELOG
 
+### 1.3.4
+
+- Fix debouncing for same action name across instances ([#21])
+- Fix reducing similar action names ([#22])
+- Bump dependencies - regen lock file
+
 ### 1.3.3
 
 - Fix to have unique promise keeper instance per store ([#19])
@@ -52,5 +58,7 @@
 [#17]:https://github.com/godaddy/reduxful/pull/17
 [#18]:https://github.com/godaddy/reduxful/pull/18
 [#19]:https://github.com/godaddy/reduxful/pull/19
+[#21]:https://github.com/godaddy/reduxful/pull/21
+[#22]:https://github.com/godaddy/reduxful/pull/22
 [transform-url]:https://github.com/godaddy/transform-url#readme
 [ApiConfig]:https://github.com/godaddy/reduxful/blob/master/docs/api.md#apiconfig--object
