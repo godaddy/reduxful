@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 1.3.6
+
+- Fix reducer action pattern check ([#23])
+
 ### 1.3.5
 
 - Fix debouncing for same action name across instances ([#21])
@@ -63,5 +67,6 @@
 [#19]:https://github.com/godaddy/reduxful/pull/19
 [#21]:https://github.com/godaddy/reduxful/pull/21
 [#22]:https://github.com/godaddy/reduxful/pull/22
+[#23]:https://github.com/godaddy/reduxful/pull/23
 [transform-url]:https://github.com/godaddy/transform-url#readme
 [ApiConfig]:https://github.com/godaddy/reduxful/blob/master/docs/api.md#apiconfig--object
