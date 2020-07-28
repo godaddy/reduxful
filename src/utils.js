@@ -103,3 +103,14 @@ export function getUrlTemplate(url, getState) {
   if (isFunction(url)) return url(getState);
   return url;
 }
+
+/**
+ * Escape special characters for RegExp
+ *
+ * @see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Escaping
+ * @param {string} string - Intended for expression
+ * @returns {string} escaped
+ */
+export function escapeRegExp(string) {
+  return string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+}

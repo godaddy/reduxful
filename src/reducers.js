@@ -1,3 +1,5 @@
+import { escapeRegExp } from './utils';
+
 export const handlers = {};
 
 handlers.onReset = function (state, action) {
@@ -57,7 +59,8 @@ handlers.onComplete = function (state, action) {
  * @private
  */
 export default function createReducer(apiName) {
-  const reApiAction = new RegExp(`^${apiName}_(RESET|START|SUCCESS|FAIL)$`);
+  const safeName = escapeRegExp(apiName);
+  const reApiAction = new RegExp(`^${safeName}_(RESET|START|SUCCESS|FAIL)$`);
   return function reducer(state = {}, action) {
     const match = reApiAction.exec(action.type);
     if (match) {

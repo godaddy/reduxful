@@ -6,7 +6,8 @@ import {
   isFunction,
   getUrlTemplate,
   parseReqDesc,
-  parseApiDesc
+  parseApiDesc,
+  escapeRegExp
 } from '../src/utils';
 import * as utils from '../src/utils';
 
@@ -214,6 +215,13 @@ describe('Utils', () => {
       expect(results).toHaveProperty('test3', expect.objectContaining({
         method: 'PATCH'
       }));
+    });
+  });
+
+  describe('escapeRegExp', () => {
+
+    it('escaped special characters', () => {
+      expect(escapeRegExp('a*b+c')).toEqual('a\\*b\\+c');
     });
   });
 });

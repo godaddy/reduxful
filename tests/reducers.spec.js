@@ -129,6 +129,17 @@ describe('Reducers', () => {
       expect(handlers.onReset).toHaveBeenCalled();
     });
 
+    it('handles special characters in api names', () => {
+      const inState = { bogus: 'bogus' };
+      reducer = createReducer('a*b+c');
+      reducer(inState, { type: 'a*b+c_START' });
+      expect(handlers.onStart).toHaveBeenCalled();
+
+      reducer = createReducer('api(v2)');
+      reducer(inState, { type: 'api(v2)_SUCCESS' });
+      expect(handlers.onComplete).toHaveBeenCalled();
+    });
+
     it('does not handle for similarly named apis', () => {
       const inState = { bogus: 'bogus' };
       reducer(inState, { type: '2mockApi_START' });
