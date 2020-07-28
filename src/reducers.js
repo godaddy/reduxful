@@ -60,7 +60,7 @@ handlers.onComplete = function (state, action) {
  */
 export default function createReducer(apiName) {
   const safeName = escapeRegExp(apiName);
-  const reApiAction = new RegExp(`^${safeName}_(RESET|START|SUCCESS|FAIL)$`);
+  const reApiAction = new RegExp(`^${safeName}_(?:.+)_(RESET|START|SUCCESS|FAIL)$`);
   return function reducer(state = {}, action) {
     const match = reApiAction.exec(action.type);
     if (match) {
