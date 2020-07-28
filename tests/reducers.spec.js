@@ -1,10 +1,10 @@
 import createReducer, { handlers } from '../src/reducers';
 import { mockApiName } from './fixtures/mockApi';
 
-const mockStartActionType = 'mockApi_START';
-const mockSuccessActionType = 'mockApi_SUCCESS';
-const mockFailActionType = 'mockApi_FAIL';
-const mockResetActionType = 'mockApi_RESET';
+const mockStartActionType = 'mockApi_getItem_START';
+const mockSuccessActionType = 'mockApi_getItem_SUCCESS';
+const mockFailActionType = 'mockApi_getItem_FAIL';
+const mockResetActionType = 'mockApi_getItem_RESET';
 const mockKey = 'getSomething__var:one';
 const mockValue = { someData: 'bogus data string' };
 const mockError = { code: 500, message: 'Something terrible happened' };
@@ -62,7 +62,7 @@ describe('Reducers', () => {
   });
   describe('reducer', () => {
     let reducer;
-    beforeAll(() => {
+    beforeEach(() => {
       reducer = createReducer(mockApiName);
       jest.spyOn(handlers, 'onStart');
       jest.spyOn(handlers, 'onComplete');
@@ -132,29 +132,43 @@ describe('Reducers', () => {
     it('handles special characters in api names', () => {
       const inState = { bogus: 'bogus' };
       reducer = createReducer('a*b+c');
-      reducer(inState, { type: 'a*b+c_START' });
+      reducer(inState, { type: 'a*b+c_getItem_START' });
       expect(handlers.onStart).toHaveBeenCalled();
 
       reducer = createReducer('api(v2)');
-      reducer(inState, { type: 'api(v2)_SUCCESS' });
+      reducer(inState, { type: 'api(v2)_getItem_SUCCESS' });
       expect(handlers.onComplete).toHaveBeenCalled();
+    });
+
+    it('expects resource name', () => {
+      const inState = { bogus: 'bogus' };
+      reducer(inState, { type: 'mockApi__START' });
+      expect(handlers.onStart).not.toHaveBeenCalled();
+    });
+
+    it('handles special characters in resource names', () => {
+      const inState = { bogus: 'bogus' };
+      reducer(inState, { type: 'mockApi_getItems*_START' });
+      reducer(inState, { type: 'mockApi_get-items_START' });
+      reducer(inState, { type: 'mockApi_@get%items_START' });
+      expect(handlers.onStart).toHaveBeenCalledTimes(3);
     });
 
     it('does not handle for similarly named apis', () => {
       const inState = { bogus: 'bogus' };
-      reducer(inState, { type: '2mockApi_START' });
-      reducer(inState, { type: 'mockApi_2_START' });
-      reducer(inState, { type: 'mockApi2_START' });
-      reducer(inState, { type: 'MOCKAPI_START' });
+      reducer(inState, { type: '2mockApi_getItem_START' });
+      reducer(inState, { type: 'mockApi-2_getItem_START' });
+      reducer(inState, { type: 'mockApi2_getItem_START' });
+      reducer(inState, { type: 'MOCKAPI_getItem_START' });
       expect(handlers.onStart).not.toHaveBeenCalled();
     });
 
     it('does not handle for unknown actions', () => {
       const inState = { bogus: 'bogus' };
-      reducer(inState, { type: 'mockApi_2START' });
-      reducer(inState, { type: 'mockApi_START2' });
-      reducer(inState, { type: 'mockApi__START' });
-      reducer(inState, { type: 'mockApi_start' });
+      reducer(inState, { type: 'mockApi_getItem_2START' });
+      reducer(inState, { type: 'mockApi_getItem_START2' });
+      reducer(inState, { type: 'mockApi_getItem_DOSTART' });
+      reducer(inState, { type: 'mockApi_getItem_start' });
       expect(handlers.onStart).not.toHaveBeenCalled();
     });
   });
