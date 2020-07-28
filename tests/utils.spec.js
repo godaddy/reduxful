@@ -7,8 +7,7 @@ import {
   getUrlTemplate,
   parseReqDesc,
   parseApiDesc,
-  startsWith,
-  endsWith
+  escapeRegExp
 } from '../src/utils';
 import * as utils from '../src/utils';
 
@@ -219,46 +218,10 @@ describe('Utils', () => {
     });
   });
 
-  describe('startsWith', () => {
+  describe('escapeRegExp', () => {
 
-    it('returns true if search string is at start', () => {
-      expect(startsWith('example', 'ex')).toBe(true);
-    });
-
-    it('returns false if search string is not at start', () => {
-      expect(startsWith('example', 'no')).toBe(false);
-    });
-
-    it('returns false if search string is not at start, even if present', () => {
-      expect(startsWith('example', 'amp')).toBe(false);
+    it('escaped special characters', () => {
+      expect(escapeRegExp('a*b+c')).toEqual('a\\*b\\+c');
     });
   });
-
-  describe('endsWith', () => {
-
-    it('returns true is search string is at end', () => {
-      expect(endsWith('example', 'le')).toBe(true);
-    });
-
-    it('handles a string with multiple occurences', () => {
-      expect(endsWith('siryessir', 'sir')).toBe(true);
-    });
-
-    it('handles an empty search string', () => {
-      expect(endsWith('example', '')).toBe(true);
-    });
-
-    it('returns false if search string is not at end', () => {
-      expect(endsWith('example', 'no')).toBe(false);
-    });
-
-    it('returns false if search string is not at end, even if present', () => {
-      expect(endsWith('example', 'amp')).toBe(false);
-    });
-
-    it('handles an empty string', () => {
-      expect(endsWith('', 'amp')).toBe(false);
-    });
-  });
-
 });
