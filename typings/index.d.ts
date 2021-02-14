@@ -103,6 +103,4 @@ declare module 'reduxful' {
     apiDesc: ApiDescription,
     config?: ApiConfig
   ): Reduxful;
-
-  export default Reduxful;
 }
