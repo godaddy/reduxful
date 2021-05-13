@@ -76,10 +76,11 @@ export function makeSubActionsCreators(apiName, resourceName, reqDesc) {
  * @param {RequestDescription} reqDesc - Request description
  * @param {Object} subActions - Generated subActions for action creators
  * @param {Object} params - Request path and query params
+ * @param {Object} options - Request options
  * @returns {Function[]} dispatchers
  * @private
  */
-export function createDispatchers(dispatch, reqDesc, subActions, params) {
+export function createDispatchers(dispatch, reqDesc, subActions, params, options) {
   const dataTransform = reqDesc.dataTransform || defaultTransformer;
   const errorTransform = reqDesc.errorTransform || defaultTransformer;
 
@@ -88,11 +89,11 @@ export function createDispatchers(dispatch, reqDesc, subActions, params) {
   }
 
   function onResolved(data) {
-    return dispatch(subActions.success(params, dataTransform(data, { params })));
+    return dispatch(subActions.success(params, dataTransform(data, { params, options })));
   }
 
   function onRejected(data) {
-    return dispatch(subActions.fail(params, errorTransform(data, { params })));
+    return dispatch(subActions.fail(params, errorTransform(data, { params, options })));
   }
 
   return [onStart, onResolved, onRejected];
@@ -204,11 +205,11 @@ export default function createActionCreators(apiName, apiDesc, apiConfig = {}) {
           );
         }
 
-        const [onStart, onResolved, onRejected] = createDispatchers(dispatch, reqDesc, subActions, params);
+        const allOptions = getRequestOptions(apiOptions, reqOptions, options, getState);
+        const [onStart, onResolved, onRejected] = createDispatchers(dispatch, reqDesc, subActions, params, allOptions);
 
         onStart();
         const url = transformUrl(getUrlTemplate(reqDesc.url, getState), params);
-        const allOptions = getRequestOptions(apiOptions, reqOptions, options, getState);
         const promise = makeRequest(reqDesc.method, url, { ...allOptions }, apiConfig)
           .then(onResolved, onRejected);
         promiseKeeper.set(promiseKey, promise);

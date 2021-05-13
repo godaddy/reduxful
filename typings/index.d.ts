@@ -34,7 +34,7 @@ declare module 'reduxful' {
   ): string;
 
   // reduxful
-  export type TransformFn = (data: any, context?: { params?: Object }) => any;
+  export type TransformFn = (data: any, context?: { params?: Object, options?: Object }) => any;
 
   export type UrlTemplateFn = (getState: () => any) => string;
 
