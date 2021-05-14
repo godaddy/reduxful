@@ -11,6 +11,7 @@ import { mockApiName, mockApiDesc } from './fixtures/mockApi';
 
 const mockPayload = { some: 'data' };
 const mockParams = { id: 1234 };
+const mockOptions = { };
 const mockKey = 'getFruit__id:1234';
 
 const fsaProperties = ['type', 'payload', 'error', 'meta'];
@@ -243,7 +244,7 @@ describe('ActionCreators', () => {
         success: jest.fn(),
         fail: jest.fn()
       };
-      [onStart, onResolved, onRejected] = createDispatchers(dispatch, mockReqDesc, subActions, mockParams);
+      [onStart, onResolved, onRejected] = createDispatchers(dispatch, mockReqDesc, subActions, mockParams, mockOptions);
     });
 
     describe('onStart', () => {
@@ -262,7 +263,7 @@ describe('ActionCreators', () => {
       it('executes dataTransform', () => {
         const mockData = { bogus: 'BOGUS' };
         onResolved(mockData);
-        expect(mockDataTransform).toHaveBeenCalledWith(mockData, { params: mockParams });
+        expect(mockDataTransform).toHaveBeenCalledWith(mockData, { params: mockParams, options:mockOptions });
       });
     });
 
@@ -275,7 +276,7 @@ describe('ActionCreators', () => {
       it('executes errorTransform', () => {
         const mockError = { something: 'terrible' };
         onRejected(mockError);
-        expect(mockErrorTransform).toHaveBeenCalledWith(mockError, { params: mockParams });
+        expect(mockErrorTransform).toHaveBeenCalledWith(mockError, { params: mockParams, options:mockOptions });
       });
     });
   });
