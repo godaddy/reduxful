@@ -263,7 +263,7 @@ describe('ActionCreators', () => {
       it('executes dataTransform', () => {
         const mockData = { bogus: 'BOGUS' };
         onResolved(mockData);
-        expect(mockDataTransform).toHaveBeenCalledWith(mockData, { params: mockParams, options:mockOptions });
+        expect(mockDataTransform).toHaveBeenCalledWith(mockData, { params: mockParams, options: mockOptions });
       });
     });
 
@@ -276,7 +276,7 @@ describe('ActionCreators', () => {
       it('executes errorTransform', () => {
         const mockError = { something: 'terrible' };
         onRejected(mockError);
-        expect(mockErrorTransform).toHaveBeenCalledWith(mockError, { params: mockParams, options:mockOptions });
+        expect(mockErrorTransform).toHaveBeenCalledWith(mockError, { params: mockParams, options: mockOptions });
       });
     });
   });
