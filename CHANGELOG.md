@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 1.4.0
+
+- Make fetch options available to transformFn ([#29])
+
 ### 1.3.6
 
 - Fix reducer action pattern check ([#23])
@@ -68,5 +72,6 @@
 [#21]:https://github.com/godaddy/reduxful/pull/21
 [#22]:https://github.com/godaddy/reduxful/pull/22
 [#23]:https://github.com/godaddy/reduxful/pull/23
+[#29]:https://github.com/godaddy/reduxful/pull/29
 [transform-url]:https://github.com/godaddy/transform-url#readme
 [ApiConfig]:https://github.com/godaddy/reduxful/blob/master/docs/api.md#apiconfig--object
