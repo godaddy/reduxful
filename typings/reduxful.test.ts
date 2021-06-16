@@ -1,4 +1,4 @@
-import Reduxful, { setupApi } from 'reduxful';
+import Reduxful, { Resource, setupApi } from 'reduxful';
 import requestAdapter from './fetchUtils.test';
 
 const apiDesc = {
@@ -16,3 +16,12 @@ const doodadApi = new Reduxful('doodadApi', apiDesc, apiConfig);
 export const reduxFul = setupApi('test-name', {});
 
 export default doodadApi;
+
+const testResource: Resource = { value: 'test', isLoaded: true, hasError: false, isUpdating: false };
+
+const testResourceWithShape: Resource<{ success: boolean }> = {
+  value: { success: true },
+  isLoaded: true,
+  hasError: false,
+  isUpdating: false
+};
