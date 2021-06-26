@@ -16,10 +16,11 @@ declare module 'reduxful' {
   ): RequestAdapter;
 
   // utils
-  export interface Resource {
+  export interface Resource<ValueType = any> {
     isLoaded?: boolean;
     isUpdating?: boolean;
     hasError?: boolean;
+    value?: ValueType;
   }
 
   export function isLoaded(resource?: Resource): boolean;
