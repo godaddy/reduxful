@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 1.4.1
+
+- Add a generic to Resource ([#30])
+
 ### 1.4.0
 
 - Make fetch options available to transformFn ([#29])
@@ -73,5 +77,6 @@
 [#22]:https://github.com/godaddy/reduxful/pull/22
 [#23]:https://github.com/godaddy/reduxful/pull/23
 [#29]:https://github.com/godaddy/reduxful/pull/29
+[#30]:https://github.com/godaddy/reduxful/pull/30
 [transform-url]:https://github.com/godaddy/transform-url#readme
 [ApiConfig]:https://github.com/godaddy/reduxful/blob/master/docs/api.md#apiconfig--object
