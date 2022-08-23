@@ -112,7 +112,7 @@ export function createDispatchers(dispatch, reqDesc, subActions, params, options
 export function shouldThrottle(key, reqDesc, resource, force) {
   if (!resource || force) return false;
 
-  const repeatRequestDelay = reqDesc.hasOwnProperty('repeatRequestDelay')
+  const repeatRequestDelay = 'repeatRequestDelay' in reqDesc
     ? reqDesc.repeatRequestDelay : constants.REPEAT_REQUEST_DELAY_DEFAULT;
   const responseDuration = Date.now() - resource.responseTime;
   return !!resource && responseDuration < repeatRequestDelay;
@@ -146,10 +146,10 @@ export function getRequestOptions(apiOptions, reqOptions, actionOptions, getStat
  * @private
  */
 export default function createActionCreators(apiName, apiDesc, apiConfig = {}) {
-  const { options: apiOptions = {}} = apiConfig;
+  const { options: apiOptions = {} } = apiConfig;
   return Object.keys(apiDesc).reduce((acc, name) => {
     const reqDesc = apiDesc[name];
-    const { options: reqOptions = {}} = reqDesc;
+    const { options: reqOptions = {} } = reqDesc;
     const resourceName = reqDesc.resourceAlias || name;
     const subActions = makeSubActionsCreators(apiName, resourceName, reqDesc);
 

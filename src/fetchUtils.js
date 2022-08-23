@@ -34,7 +34,7 @@ handlers.decode = function (response) {
     return response.text()
       .then(data => handlers.finish(response, data));
   } catch (err) {
-    return Promise.reject(`Content-type ${contentType} not supported`);
+    return Promise.reject(new Error(`Content-type ${contentType} not supported`));
   }
 };
 

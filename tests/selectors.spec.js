@@ -38,7 +38,7 @@ describe('Selectors', () => {
     });
 
     it('returns undefined if no resource in api in state', () => {
-      result = selectors.getFruit({ mockApi: {}}, { id: 1234 });
+      result = selectors.getFruit({ mockApi: {} }, { id: 1234 });
       expect(result).toBeUndefined();
     });
 
