@@ -10,7 +10,7 @@ describe('PromiseKeeper', () => {
 
     promise = new Promise((resolve, reject) => {
       doResolve = () => resolve();
-      doReject = () => reject();
+      doReject = () => reject(new Error('bogus'));
     });
   });
 
@@ -65,23 +65,17 @@ describe('PromiseKeeper', () => {
     expect(expected).toBe(false);
   });
 
-  it('resolved promises are removed from store', (done) => {
+  it('resolved promises are removed from store', async () => {
     _promiseKeeper.set(mockKey, promise);
     expect(_promiseKeeper.has(mockKey)).toBe(true);
-    promise.then(() => {
-      expect(_promiseKeeper.has(mockKey)).toBe(false);
-      done();
-    });
-    doResolve();
+    await doResolve();
+    expect(_promiseKeeper.has(mockKey)).toBe(false);
   });
 
-  it('rejected promises are removed from store', (done) => {
+  it('rejected promises are removed from store', async () => {
     _promiseKeeper.set(mockKey, promise);
     expect(_promiseKeeper.has(mockKey)).toBe(true);
-    promise.catch(() => {
-      expect(_promiseKeeper.has(mockKey)).toBe(false);
-      done();
-    });
-    doReject();
+    await doReject();
+    expect(_promiseKeeper.has(mockKey)).toBe(false);
   });
 });

@@ -2,7 +2,7 @@
 
 [![Version npm](https://img.shields.io/npm/v/reduxful.svg?style=flat-square)](https://www.npmjs.com/package/reduxful)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/godaddy/reduxful/CI?style=flat-square)](https://github.com/godaddy/reduxful/actions/workflows/ci.yml)
-[![Dependencies](https://img.shields.io/david/godaddy/reduxful.svg?style=flat-square)](https://david-dm.org/godaddy/reduxful)[![Coverage Status](https://img.shields.io/coveralls/godaddy/reduxful/master.svg?style=flat-square)](https://coveralls.io/r/godaddy/reduxful?branch=master)
+[![Coverage Status](https://img.shields.io/coveralls/godaddy/reduxful/master.svg?style=flat-square)](https://coveralls.io/r/godaddy/reduxful?branch=master)
 
 Client-side state is often related to data requested from RESTful web services.
 Reduxful aims to reduce the boilerplate for managing requested data in Redux 

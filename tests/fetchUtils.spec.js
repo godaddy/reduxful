@@ -77,7 +77,7 @@ describe('fetchUtils', () => {
     it('appends option headers to defaults', () => {
       fetchAdapter({ url: mockUrl, ...mockOptions, headers: mockFooHeaders });
       expect(mockFetch).toHaveBeenCalledWith(mockUrl,
-        expect.objectContaining({ headers: { ...defaultHeaders, ...mockFooHeaders }}));
+        expect.objectContaining({ headers: { ...defaultHeaders, ...mockFooHeaders } }));
     });
 
     it('defaults credentials to same-origin', () => {
@@ -113,60 +113,52 @@ describe('fetchUtils', () => {
       mockResponse.text.mockResolvedValue(mockTextData);
     });
 
-    it('decodes and resolves JSON content', (done) => {
+    it('decodes and resolves JSON content', async () => {
       mockResponse.headers.set('content-type', 'application/json');
-      handlers.decode(mockResponse).then(data => {
-        expect(data).toBe(mockJsonData);
-        done();
-      });
+      const data = await handlers.decode(mockResponse);
+      expect(data).toBe(mockJsonData);
     });
 
-    it('decodes and resolves TEXT content', (done) => {
+    it('decodes and resolves TEXT content', async () => {
       mockResponse.headers.set('content-type', 'text/html');
-      handlers.decode(mockResponse).then(data => {
-        expect(data).toBe(mockTextData);
-        done();
-      });
+      const data = await handlers.decode(mockResponse);
+      expect(data).toBe(mockTextData);
     });
 
-    it('decodes and resolves PLAIN TEXT content', (done) => {
+    it('decodes and resolves PLAIN TEXT content', async () => {
       mockResponse.headers.set('content-type', 'text/plain');
-      handlers.decode(mockResponse).then(data => {
-        expect(data).toBe(mockTextData);
-        done();
-      });
+      const data = await handlers.decode(mockResponse);
+      expect(data).toBe(mockTextData);
     });
 
-    it('decodes and resolves no content on a 204 response', (done) => {
+    it('decodes and resolves no content on a 204 response', async () => {
       mockResponse.status = 204;
-      handlers.decode(mockResponse).then(data => {
-        expect(data).toBe(null);
-        done();
-      });
+      const data = await handlers.decode(mockResponse);
+      expect(data).toBe(null);
     });
 
-    it('rejects for unhandled content types', (done) => {
+    it('rejects for unhandled content types', async () => {
       mockResponse.text = jest.fn().mockImplementation(() => {
         throw new Error('`text` not implemented');
       });
       mockResponse.headers.set('content-type', 'some/type');
-      handlers.decode(mockResponse).catch(data => {
-        expect(data).toContain('not supported');
-        done();
-      });
+      const result = handlers.decode(mockResponse);
+      await expect(result).rejects.toEqual(expect.objectContaining(
+        { message: 'Content-type some/type not supported' }
+      ));
     });
   });
 
   describe('Finish Handler', () => {
 
-    it('resolves if response ok', () => {
+    it('resolves if response ok', async () => {
       const result = handlers.finish({ ok: true }, mockTextData);
-      expect(result).resolves.toBe(mockTextData);
+      await expect(result).resolves.toBe(mockTextData);
     });
 
-    it('rejects if response not ok', () => {
+    it('rejects if response not ok', async () => {
       const result = handlers.finish({ ok: false }, mockTextData);
-      expect(result).rejects.toBe(mockTextData);
+      await expect(result).rejects.toBe(mockTextData);
     });
   });
 });

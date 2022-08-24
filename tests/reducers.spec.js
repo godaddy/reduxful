@@ -215,7 +215,7 @@ describe('Reducers', () => {
     });
 
     it('maintains previous hasError status for existing resources', () => {
-      const inState = { [mockKey]: { ...mockSuccessResource, hasError: true }};
+      const inState = { [mockKey]: { ...mockSuccessResource, hasError: true } };
       const outState = handlers.onStart(inState, mockStartAction);
       expect(outState[mockKey]).toHaveProperty('hasError', true);
     });
@@ -240,7 +240,7 @@ describe('Reducers', () => {
     });
 
     it('updates requestTime', () => {
-      const inState = { [mockKey]: { ...mockSuccessResource, requestTime: 123456 }};
+      const inState = { [mockKey]: { ...mockSuccessResource, requestTime: 123456 } };
       const outState = handlers.onStart(inState, mockStartAction);
       expect(inState[mockKey]).toHaveProperty('requestTime', 123456);
       expect(outState[mockKey]).not.toHaveProperty('requestTime', 123456);
@@ -306,7 +306,7 @@ describe('Reducers', () => {
     });
 
     it('updates responseTime', () => {
-      const inState = { [mockKey]: { ...mockSuccessResource, responseTime: 123456 }};
+      const inState = { [mockKey]: { ...mockSuccessResource, responseTime: 123456 } };
       const outState = handlers.onStart(inState, mockStartAction);
       expect(inState[mockKey]).toHaveProperty('responseTime', 123456);
       expect(outState[mockKey]).not.toHaveProperty('responseTime', 123456);

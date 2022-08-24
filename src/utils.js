@@ -65,11 +65,11 @@ export function hasError(resource) {
 export function parseReqDesc(reqDesc) {
   reqDesc.method = (reqDesc.method || 'GET').toUpperCase();
 
-  if (reqDesc.hasOwnProperty('withCredentials')) {
+  if ('withCredentials' in reqDesc) {
     // eslint-disable-next-line no-console
     console.warn('`withCredentials` on RequestDescription is being deprecated. Set in `options` instead.');
     if (!isFunction(reqDesc.options)) {
-      reqDesc.options = { withCredentials: reqDesc.withCredentials, ...reqDesc.options || {}};
+      reqDesc.options = { withCredentials: reqDesc.withCredentials, ...reqDesc.options || {} };
     }
   }
 

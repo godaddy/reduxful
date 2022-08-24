@@ -332,22 +332,18 @@ describe('ActionCreators', () => {
       expect(requestAdapter.makeRequest).toHaveBeenCalled();
     });
 
-    it('dispatches success actionCreator on successful response', (done) => {
+    it('dispatches success actionCreator on successful response', async () => {
       const thunk = actions.getFruit(mockParams);
-      thunk(dispatch, getState).then(() => {
-        expect(actions.getFruit.subActions.success).toHaveBeenCalled();
-        done();
-      });
+      await thunk(dispatch, getState);
+      expect(actions.getFruit.subActions.success).toHaveBeenCalled();
     });
 
-    it('dispatches fail actionCreator on erroneous response', (done) => {
+    it('dispatches fail actionCreator on erroneous response', async () => {
       requestSpy.mockReset().mockRejectedValueOnce(false);
 
       const thunk = actions.getFruit(mockParams);
-      thunk(dispatch, getState).then(() => {
-        expect(actions.getFruit.subActions.fail).toHaveBeenCalled();
-        done();
-      });
+      await thunk(dispatch, getState);
+      expect(actions.getFruit.subActions.fail).toHaveBeenCalled();
     });
 
     describe('Throttling', () => {
