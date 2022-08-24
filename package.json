@@ -55,7 +55,7 @@
     "babel-register": "^6.26.0",
     "coveralls": "^3.0.2",
     "eslint": "^5.5.0",
-    "eslint-config-godaddy": "^2.1.0",
+    "eslint-config-godaddy": "6.1.0",
     "eslint-plugin-jest": "^21.15.1",
     "eslint-plugin-json": "^1.2.0",
     "eslint-plugin-mocha": "^5.0.0",
