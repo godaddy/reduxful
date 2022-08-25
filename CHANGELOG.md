@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 1.4.2
+
+- Upgrade dependencies
+
 ### 1.4.1
 
 - Add a generic to Resource ([#30])
