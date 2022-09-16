@@ -4249,10 +4249,10 @@ tough-cookie@~2.5.0:
     psl "^1.1.28"
     punycode "^2.1.1"
 
-transform-url@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/transform-url/-/transform-url-1.1.1.tgz#56d4919723e6bfade47c115099d7ab915843385b"
-  integrity sha512-tnw+GkxMY9X1PWXPSIBTj0ENdy1HbE43eT7swazG7jM9RAM3Ko7hpMw2tX8yNeNmbrFkQQj4bmMxHGzHECkSqQ==
+transform-url@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/transform-url/-/transform-url-1.1.3.tgz#a53ed18bce2f971ef4d3297861845dfc0b59e91f"
+  integrity sha512-nJfMkQTFgswJMaRDxCXdTr7IwFvTljKTRq3SWzN0n0Mq5Px5iIhOHcDqj4F/RUVP8ZBCNr2vbECOurV7y4P93A==
   dependencies:
     "@ungap/url-search-params" "^0.1.2"
 
