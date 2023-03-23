@@ -107,10 +107,12 @@ describe('fetchUtils', () => {
         ok: true,
         headers: new Map(),
         json: jest.fn(),
-        text: jest.fn()
+        text: jest.fn(),
+        clone: jest.fn()
       };
       mockResponse.json.mockResolvedValue(mockJsonData);
       mockResponse.text.mockResolvedValue(mockTextData);
+      mockResponse.clone.mockImplementation(() => mockResponse);
     });
 
     it('decodes and resolves JSON content', async () => {
