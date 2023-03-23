@@ -55,12 +55,12 @@ handlers.decode = function (response) {
  */
 export function makeFetchAdapter(fetcher, defaultOptions = {}) {
   /**
-     * The RequestAdapter using Fetch
-     *
-     * @param {RequestAdapterOptions} options - Options from the request call
-     * @returns {Promise} promise
-     * @private
-     */
+   * The RequestAdapter using Fetch
+   *
+   * @param {RequestAdapterOptions} options - Options from the request call
+   * @returns {Promise} promise
+   * @private
+   */
   function fetchAdapter(options) {
     const { url, withCredentials, ...rest } = options;
     const outOpts = { ...defaultOptions, ...rest };
