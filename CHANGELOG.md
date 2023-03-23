@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 1.4.3
+
+- Catch JSON decode for null responses ([#61])
+
 ### 1.4.2
 
 - Upgrade dependencies
@@ -82,5 +86,6 @@
 [#23]:https://github.com/godaddy/reduxful/pull/23
 [#29]:https://github.com/godaddy/reduxful/pull/29
 [#30]:https://github.com/godaddy/reduxful/pull/30
+[#61]:https://github.com/godaddy/reduxful/pull/61
 [transform-url]:https://github.com/godaddy/transform-url#readme
 [ApiConfig]:https://github.com/godaddy/reduxful/blob/master/docs/api.md#apiconfig--object
