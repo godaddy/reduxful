@@ -28,8 +28,17 @@ handlers.decode = function (response) {
 
   if (contentType.includes('application/json')) {
     return response.json()
-      .then(data => handlers.finish(response, data));
+      .then(data => handlers.finish(response, data))
+      .catch(e =>
+        response.text()
+          .then(data => {
+            if (!data) {
+              return handlers.finish(response, null);
+            }
+            throw e;
+          }));
   }
+
   try {
     return response.text()
       .then(data => handlers.finish(response, data));
