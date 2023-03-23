@@ -44,7 +44,7 @@ The sub-action creators are used during the lifecycle of a request to dispatch
 updates to a resource in redux state. They are also exposed should
 direct developer access be needed.</p>
 </dd>
-<dt><a href="#ActionCreatorThunkFn">ActionCreatorThunkFn</a> ⇒ <code><a href="#Action">[ &#x27;Promise&#x27; ].&lt;Action&gt;</a></code></dt>
+<dt><a href="#ActionCreatorThunkFn">ActionCreatorThunkFn</a> ⇒ <code><a href="#Action">Promise.&lt;Action&gt;</a></code></dt>
 <dd><p>Thunk will actually dispatch an Action only if:</p>
 <ol>
 <li>it is not debounced</li>
@@ -109,11 +109,11 @@ Main class which manages RESTful requests and state with Redux.
 
 * [Reduxful](#Reduxful)
     * [new Reduxful(apiName, apiDesc, [apiConfig])](#new_Reduxful_new)
-    * [.actionCreators](#Reduxful+actionCreators) ⇒ <code>[ &#x27;Object&#x27; ].&lt;String, ActionCreatorFn&gt;</code>
-    * [.actions](#Reduxful+actions) ⇒ <code>[ &#x27;Object&#x27; ].&lt;String, ActionCreatorFn&gt;</code>
-    * [.reducers](#Reduxful+reducers) ⇒ <code>[ &#x27;Object&#x27; ].&lt;String, ReducerFn&gt;</code>
-    * [.reducerMap](#Reduxful+reducerMap) ⇒ <code>[ &#x27;Object&#x27; ].&lt;String, ReducerFn&gt;</code>
-    * [.selectors](#Reduxful+selectors) ⇒ <code>[ &#x27;Object&#x27; ].&lt;String, SelectorFn&gt;</code>
+    * [.actionCreators](#Reduxful+actionCreators) ⇒ <code>Object.&lt;String, ActionCreatorFn&gt;</code>
+    * [.actions](#Reduxful+actions) ⇒ <code>Object.&lt;String, ActionCreatorFn&gt;</code>
+    * [.reducers](#Reduxful+reducers) ⇒ <code>Object.&lt;String, ReducerFn&gt;</code>
+    * [.reducerMap](#Reduxful+reducerMap) ⇒ <code>Object.&lt;String, ReducerFn&gt;</code>
+    * [.selectors](#Reduxful+selectors) ⇒ <code>Object.&lt;String, SelectorFn&gt;</code>
 
 <a name="new_Reduxful_new"></a>
 
@@ -131,39 +131,39 @@ Create new RESTful configuration for Redux.
 
 <a name="Reduxful+actionCreators"></a>
 
-### reduxful.actionCreators ⇒ <code>[ &#x27;Object&#x27; ].&lt;String, ActionCreatorFn&gt;</code>
+### reduxful.actionCreators ⇒ <code>Object.&lt;String, ActionCreatorFn&gt;</code>
 Property
 
 **Kind**: instance property of [<code>Reduxful</code>](#Reduxful)  
-**Returns**: <code>[ &#x27;Object&#x27; ].&lt;String, ActionCreatorFn&gt;</code> - redux action creators  
+**Returns**: <code>Object.&lt;String, ActionCreatorFn&gt;</code> - redux action creators  
 <a name="Reduxful+actions"></a>
 
-### reduxful.actions ⇒ <code>[ &#x27;Object&#x27; ].&lt;String, ActionCreatorFn&gt;</code>
+### reduxful.actions ⇒ <code>Object.&lt;String, ActionCreatorFn&gt;</code>
 Alias to actionCreators
 
 **Kind**: instance property of [<code>Reduxful</code>](#Reduxful)  
-**Returns**: <code>[ &#x27;Object&#x27; ].&lt;String, ActionCreatorFn&gt;</code> - redux action creators  
+**Returns**: <code>Object.&lt;String, ActionCreatorFn&gt;</code> - redux action creators  
 <a name="Reduxful+reducers"></a>
 
-### reduxful.reducers ⇒ <code>[ &#x27;Object&#x27; ].&lt;String, ReducerFn&gt;</code>
+### reduxful.reducers ⇒ <code>Object.&lt;String, ReducerFn&gt;</code>
 Property
 
 **Kind**: instance property of [<code>Reduxful</code>](#Reduxful)  
-**Returns**: <code>[ &#x27;Object&#x27; ].&lt;String, ReducerFn&gt;</code> - redux reducers  
+**Returns**: <code>Object.&lt;String, ReducerFn&gt;</code> - redux reducers  
 <a name="Reduxful+reducerMap"></a>
 
-### reduxful.reducerMap ⇒ <code>[ &#x27;Object&#x27; ].&lt;String, ReducerFn&gt;</code>
+### reduxful.reducerMap ⇒ <code>Object.&lt;String, ReducerFn&gt;</code>
 Alias to reducers
 
 **Kind**: instance property of [<code>Reduxful</code>](#Reduxful)  
-**Returns**: <code>[ &#x27;Object&#x27; ].&lt;String, ReducerFn&gt;</code> - redux reducers  
+**Returns**: <code>Object.&lt;String, ReducerFn&gt;</code> - redux reducers  
 <a name="Reduxful+selectors"></a>
 
-### reduxful.selectors ⇒ <code>[ &#x27;Object&#x27; ].&lt;String, SelectorFn&gt;</code>
+### reduxful.selectors ⇒ <code>Object.&lt;String, SelectorFn&gt;</code>
 Property
 
 **Kind**: instance property of [<code>Reduxful</code>](#Reduxful)  
-**Returns**: <code>[ &#x27;Object&#x27; ].&lt;String, SelectorFn&gt;</code> - redux selectors  
+**Returns**: <code>Object.&lt;String, SelectorFn&gt;</code> - redux selectors  
 <a name="makeFetchAdapter"></a>
 
 ## makeFetchAdapter(fetcher, [defaultOptions]) ⇒ <code>function</code>
@@ -216,7 +216,7 @@ Builds the resource key based on the parameters passed.
 | Param | Type | Description |
 | --- | --- | --- |
 | reqName | <code>String</code> | Name of the API request. |
-| params | <code>[ &#x27;Object&#x27; ].&lt;String, (String\|Number)&gt;</code> | Parameters used as URL or Query params |
+| params | <code>Object.&lt;String, (String\|Number)&gt;</code> | Parameters used as URL or Query params |
 
 <a name="isLoaded"></a>
 
@@ -294,7 +294,7 @@ direct developer access be needed.
 
 <a name="ActionCreatorThunkFn"></a>
 
-## ActionCreatorThunkFn ⇒ [<code>[ &#x27;Promise&#x27; ].&lt;Action&gt;</code>](#Action)
+## ActionCreatorThunkFn ⇒ [<code>Promise.&lt;Action&gt;</code>](#Action)
 Thunk will actually dispatch an Action only if:
   1. it is not debounced
   2. it is not throttled
@@ -305,7 +305,7 @@ Thunk will always return a resolving promise with either:
   3. previous action dispatched if throttled
 
 **Kind**: global typedef  
-**Returns**: [<code>[ &#x27;Promise&#x27; ].&lt;Action&gt;</code>](#Action) - promise  
+**Returns**: [<code>Promise.&lt;Action&gt;</code>](#Action) - promise  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -336,7 +336,7 @@ RequestAdapter Options
 | options | <code>Object</code> |  |
 | options.method | <code>String</code> | HTTP method to use (GET, POST, etc.) |
 | options.url | <code>String</code> | URL to call |
-| options.headers | <code>[ &#x27;Object&#x27; ].&lt;String, String&gt;</code> | Header for request |
+| options.headers | <code>Object.&lt;String, String&gt;</code> | Header for request |
 | options.withCredentials | <code>Boolean</code> | Should cookies be passed for cross-origin requests |
 | options.body | <code>\*</code> | Optional body of request |
 
