@@ -147,6 +147,35 @@ describe('fetchUtils', () => {
         { message: 'Content-type some/type not supported' }
       ));
     });
+
+    it('decodes and resolves JSON content with null response', async () => {
+      mockResponse.headers.set('content-type', 'application/json');
+      mockResponse.json.mockResolvedValue(Promise.reject(new Error()));
+      mockResponse.text.mockResolvedValue(Promise.resolve(null));
+
+      const data = await handlers.decode(mockResponse);
+      expect(data).toBe(null);
+    });
+
+    it('decodes and resolves JSON content with empty string response', async () => {
+      mockResponse.headers.set('content-type', 'application/json');
+      mockResponse.json.mockResolvedValue(Promise.reject(new Error()));
+      mockResponse.text.mockResolvedValue(Promise.resolve(''));
+
+      const data = await handlers.decode(mockResponse);
+      expect(data).toBe(null);
+    });
+
+    it('decodes and resolves JSON throws invalid error', async () => {
+      mockResponse.headers.set('content-type', 'application/json');
+      mockResponse.json.mockResolvedValue(Promise.reject(new Error('bad json format')));
+      mockResponse.text.mockResolvedValue(Promise.resolve('NOT JSON'));
+
+      const result = handlers.decode(mockResponse);
+      await expect(result).rejects.toEqual(expect.objectContaining(
+        { message: 'bad json format' }
+      ));
+    });
   });
 
   describe('Finish Handler', () => {

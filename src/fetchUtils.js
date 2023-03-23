@@ -25,11 +25,19 @@ handlers.decode = function (response) {
   }
 
   const contentType = response.headers.get('content-type');
-
   if (contentType.includes('application/json')) {
     return response.json()
-      .then(data => handlers.finish(response, data));
+      .then(data => handlers.finish(response, data))
+      .catch(e =>
+        response.text()
+          .then(data => {
+            if (!data) {
+              return handlers.finish(response, null);
+            }
+            throw e;
+          }));
   }
+
   try {
     return response.text()
       .then(data => handlers.finish(response, data));
@@ -47,12 +55,12 @@ handlers.decode = function (response) {
  */
 export function makeFetchAdapter(fetcher, defaultOptions = {}) {
   /**
-   * The RequestAdapter using Fetch
-   *
-   * @param {RequestAdapterOptions} options - Options from the request call
-   * @returns {Promise} promise
-   * @private
-   */
+     * The RequestAdapter using Fetch
+     *
+     * @param {RequestAdapterOptions} options - Options from the request call
+     * @returns {Promise} promise
+     * @private
+     */
   function fetchAdapter(options) {
     const { url, withCredentials, ...rest } = options;
     const outOpts = { ...defaultOptions, ...rest };
