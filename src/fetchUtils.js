@@ -27,7 +27,7 @@ handlers.decode = function (response) {
   const contentType = response.headers.get('content-type');
 
   if (contentType.includes('application/json')) {
-    return response.json()
+    return response.clone().json()
       .then(data => handlers.finish(response, data))
       .catch(e =>
         response.text()
@@ -35,6 +35,8 @@ handlers.decode = function (response) {
             if (!data) {
               return handlers.finish(response, null);
             }
+            throw e;
+          }).catch(() => {
             throw e;
           }));
   }
@@ -56,12 +58,12 @@ handlers.decode = function (response) {
  */
 export function makeFetchAdapter(fetcher, defaultOptions = {}) {
   /**
-   * The RequestAdapter using Fetch
-   *
-   * @param {RequestAdapterOptions} options - Options from the request call
-   * @returns {Promise} promise
-   * @private
-   */
+     * The RequestAdapter using Fetch
+     *
+     * @param {RequestAdapterOptions} options - Options from the request call
+     * @returns {Promise} promise
+     * @private
+     */
   function fetchAdapter(options) {
     const { url, withCredentials, ...rest } = options;
     const outOpts = { ...defaultOptions, ...rest };
