@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 1.4.4
+
+- Added additional catch for unknown errors on json decoding ([#62]) 
+
 ### 1.4.3
 
 - Catch JSON decode for null responses ([#61])
@@ -87,5 +91,6 @@
 [#29]:https://github.com/godaddy/reduxful/pull/29
 [#30]:https://github.com/godaddy/reduxful/pull/30
 [#61]:https://github.com/godaddy/reduxful/pull/61
+[#62]:https://github.com/godaddy/reduxful/pull/62
 [transform-url]:https://github.com/godaddy/transform-url#readme
 [ApiConfig]:https://github.com/godaddy/reduxful/blob/master/docs/api.md#apiconfig--object
