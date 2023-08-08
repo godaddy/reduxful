@@ -27,18 +27,15 @@ handlers.decode = function (response) {
   const contentType = response.headers.get('content-type');
 
   if (contentType.includes('application/json')) {
-    return response.clone().json()
+    return response.json()
       .then(data => handlers.finish(response, data))
-      .catch(e =>
-        response.text()
-          .then(data => {
-            if (!data) {
-              return handlers.finish(response, null);
-            }
-            throw e;
-          }).catch(() => {
-            throw e;
-          }));
+      .catch(e => {
+        // No content, ignore response and return success
+        if (response.status === 202) {
+          return handlers.finish(response, null);
+        }
+        throw e;
+      });
   }
 
   try {
