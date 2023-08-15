@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 1.5.0
+
+- Remove response.clone ([#65])
+
 ### 1.4.4
 
 - Added additional catch for unknown errors on json decoding ([#62]) 
@@ -92,5 +96,7 @@
 [#30]:https://github.com/godaddy/reduxful/pull/30
 [#61]:https://github.com/godaddy/reduxful/pull/61
 [#62]:https://github.com/godaddy/reduxful/pull/62
+[#65]:https://github.com/godaddy/reduxful/pull/65
+
 [transform-url]:https://github.com/godaddy/transform-url#readme
 [ApiConfig]:https://github.com/godaddy/reduxful/blob/master/docs/api.md#apiconfig--object
