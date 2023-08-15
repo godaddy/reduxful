@@ -150,22 +150,20 @@ describe('fetchUtils', () => {
       ));
     });
 
-    it('decodes and resolves JSON content with null response', async () => {
+    it('decodes and resolves no content on a 202 response', async () => {
       mockResponse.headers.set('content-type', 'application/json');
+      mockResponse.status = 202;
       mockResponse.json.mockResolvedValue(Promise.reject(new Error()));
-      mockResponse.text.mockResolvedValue(Promise.resolve(null));
 
       const data = await handlers.decode(mockResponse);
       expect(data).toBe(null);
     });
 
-    it('decodes and resolves JSON content with empty string response', async () => {
+    it('decodes and resolves JSON content on a 202 response', async () => {
       mockResponse.headers.set('content-type', 'application/json');
-      mockResponse.json.mockResolvedValue(Promise.reject(new Error()));
-      mockResponse.text.mockResolvedValue(Promise.resolve(''));
-
+      mockResponse.status = 202;
       const data = await handlers.decode(mockResponse);
-      expect(data).toBe(null);
+      expect(data).toBe(mockJsonData);
     });
 
     it('decodes and resolves JSON throws invalid error', async () => {
