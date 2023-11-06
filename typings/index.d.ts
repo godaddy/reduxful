@@ -35,7 +35,10 @@ declare module 'reduxful' {
   ): string;
 
   // reduxful
-  export type TransformFn = (data: any, context?: { params?: Object, options?: Object }) => any;
+  export type TransformFn = (
+    data: any,
+    context?: { params?: Object; options?: Object }
+  ) => any;
 
   export type UrlTemplateFn = (getState: () => any) => string;
 
@@ -68,10 +71,10 @@ declare module 'reduxful' {
     error?: boolean;
   }
 
-  export type ActionCreatorThunkFn = (
-    dispatch: () => any,
-    getState: () => any
-  ) => Promise<Action>;
+  export type ActionCreatorThunkFn<State = any> = (
+    dispatch: (action: ActionCreatorThunkFn) => any,
+    getState: () => State
+  ) => Promise<Action | void>;
 
   export type ActionCreatorFn<Options = Object> = (
     params: { [paramName: string]: any },
@@ -96,7 +99,11 @@ declare module 'reduxful' {
     public reducers: { [key: string]: ReducerFn };
     public reducerMap: { [key: string]: ReducerFn };
     public selectors: { [key: string]: SelectorFn };
-    constructor(apiName: string, apiDesc: ApiDescription, apiConfig?: ApiConfig);
+    constructor(
+      apiName: string,
+      apiDesc: ApiDescription,
+      apiConfig?: ApiConfig
+    );
   }
 
   export function setupApi(
